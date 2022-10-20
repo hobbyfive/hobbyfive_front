@@ -7,11 +7,11 @@ import MyPage from './pages/MyPage';
 function App() {
   return (
     <Routes>
-    <Route path="/" element={<Main />} />
-    <Route path="/join" element={<Join />} />
-    <Route path="/create" element={<Create />} />
-    <Route path="/mypage" element={<MyPage />} />
-  </Routes>
+      <Route path="/" element={<Main />} />
+      <Route path="/join" element={<Join />} />
+      <Route path="/create" element={<Create />} />
+      <Route path="/mypage" element={<MyPage />} />
+    </Routes>
   );
 }
 
