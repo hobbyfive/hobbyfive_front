@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import './Create.css';
 
 import Box from '@mui/material/Box';
@@ -23,6 +23,16 @@ const Create = () => {
     setDeadLine(newValue);
   };
 
+  const fileInput = useRef(null);
+  const handleButtonClick = e => {
+    fileInput.current.click();
+  };
+  const handleChange = e => {
+    console.log(e.target.files[0]);
+    setFileImage(URL.createObjectURL(e.target.files[0]));
+  };
+  const [fileImage, setFileImage] = useState('');
+
   return (
     <div>
       <header></header>
@@ -31,7 +41,6 @@ const Create = () => {
         sx={{
           margin: '1vh auto',
           width: '65vw',
-          height: '80vh',
           backgroundColor: 'white',
           borderRadius: '15px',
           border: '1px solid #EEEFF2',
@@ -46,10 +55,22 @@ const Create = () => {
             }}
           />
         </div>
-        <div className="imageBox">
-          <div className="muiIcon">
-            <AddPhotoAlternateIcon fontSize="large" />
-          </div>
+        <div className="imageBox" onClick={handleButtonClick}>
+          {fileImage && (
+            <img alt="sample" src={fileImage} className="uploadedImage" />
+          )}
+          {!fileImage && (
+            <div className="muiIcon">
+              <AddPhotoAlternateIcon fontSize="large" />
+              <input
+                type="file"
+                accept="image/*"
+                ref={fileInput}
+                onChange={handleChange}
+                style={{ display: 'none' }}
+              />
+            </div>
+          )}
         </div>
         <div className="timeBox">
           <div className="gatheringDay">
