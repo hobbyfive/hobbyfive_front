@@ -7,31 +7,65 @@ header {
   background-color: #1F2937;
 }
 
-.h2g {
-  font-weight: 500;
-  margin: 0;
+.pageTitle {
+  text-align: center;
 }
 
-.hehe {
+.timeBox{
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
+  padding: 1vh;
 }
 
-.hehe2 {
-  margin-top: 1.5vh;
-  margin-bottom: 1.5vh;
+.inlineBlock{
+  display: inline-block; 
+  vertical-align: middle;
 }
 
-.hehe3 {
-  margin-top: 1vh;
-  text-align: right;
+.gatheringDay{
+  padding: 2vh;  
+  border: 1px solid #EEEFF2;
+  border-radius: 15px;
+  margin: 1vh;
+  width: 50%;
 }
 
-.hoho {
-  border-top: 1px solid #EEEFF2;
-
+.deadLine {
+  padding: 2vh;  
+  border: 1px solid #EEEFF2;
+  border-radius: 15px;
+  margin: 1vh;
+  width: 50%;
 }
 
-.hoho2{
-  padding: 2vh
+.gatheringDayText {
+  width: 50%;
+  text-align: center;  
+  font-size: 1.5rem;
+}
+
+.deadLineText{
+  width: 50%;
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+.title{
+  margin: 1vh;
+  padding: 1vh;
+}
+
+.imageBox{
+  margin: 0 auto;
+  border: 1px solid #EEEFF2;
+  border-radius: 15px;
+  width: 96%; 
+  background-color: #F9FAFB;
+}
+
+.muiIcon {
+  display: flex;
+  justify-content: center;
+  margin: 5vh;
+  
 }

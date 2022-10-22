@@ -3,6 +3,7 @@ import Main from './pages/Main';
 import Join from './pages/Join';
 import Create from './pages/Create';
 import MyPage from './pages/MyPage';
+import Tmp from './pages/temp/Tmp';
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
       <Route path="/" element={<Main />} />
       <Route path="/join" element={<Join />} />
       <Route path="/create" element={<Create />} />
+      <Route path="/tmp" element={<Tmp />} />
       <Route path="/mypage" element={<MyPage />} />
     </Routes>
   );

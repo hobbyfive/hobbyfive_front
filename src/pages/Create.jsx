@@ -1,81 +1,83 @@
 import React, { useState } from 'react';
-
 import './Create.css';
 
-import { styled } from '@mui/material/styles';
-import Tab from '@mui/material/Tab';
-import Tabs from '@mui/material/Tabs';
+import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import InputAdornment from '@mui/material/InputAdornment';
+import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 
-import Box from '@mui/material/Box';
-
-const StyledTabs = styled(Tabs)({
-  margin: '1vh auto',
-  width: '80vw',
-});
-
-const StyledTab = styled(Tab)({
-  '&.Mui-selected': { backgroundColor: 'black' },
-});
+import dayjs from 'dayjs';
+import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 
 const Create = () => {
-  const [value, setValue] = useState(0);
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
+  const [gatheringDay, setGatheringDay] = useState(
+    dayjs('2022-11-04T18:00:00'),
+  );
+  const [deadLine, setDeadLine] = useState(dayjs('2022-11-04T18:00:00'));
+  const handleGatheringDay = newValue => {
+    setGatheringDay(newValue);
   };
+  const handleDeadLine = newValue => {
+    setDeadLine(newValue);
+  };
+
   return (
     <div>
       <header></header>
-      <StyledTabs value={value} onChange={handleChange}>
-        <StyledTab label="공지사항" />
-        <StyledTab label="강의 게시판" />
-      </StyledTabs>
-      {value === 0 && <div>공지사항</div>}
-      {value === 1 && (
-        <Box
-          sx={{
-            margin: '1vh auto',
-
-            width: '80vw',
-
-            backgroundColor: 'white',
-            borderRadius: '15px',
-            border: '1px solid #EEEFF2',
-          }}
-        >
-          <div className="hoho2">
-            <div className="hehe">
-              <h2 className="h2g">질문하기</h2>
-              <button>취소</button>
-            </div>
-
-            <div className="hehe2">
-              <TextField
-                id="outlined-textarea"
-                fullWidth
-                InputProps={{
-                  endAdornment: (
-                    <InputAdornment position="end">0 / 100</InputAdornment>
-                  ),
-                }}
-              />
-            </div>
-            <div>
-              <TextField id="outlined-textarea" fullWidth multiline rows={18} />
-              <div className="hehe3">
-                <span className="hehe4">0 / 50000</span>
-              </div>
+      <h1 className="pageTitle">모임 만들기</h1>
+      <Box
+        sx={{
+          margin: '1vh auto',
+          width: '65vw',
+          height: '80vh',
+          backgroundColor: 'white',
+          borderRadius: '15px',
+          border: '1px solid #EEEFF2',
+        }}
+      >
+        <div className="title">
+          <TextField
+            id="outlined-textarea"
+            fullWidth
+            InputProps={{
+              endAdornment: <InputAdornment position="end"></InputAdornment>,
+            }}
+          />
+        </div>
+        <div className="imageBox">
+          <div className="muiIcon">
+            <AddPhotoAlternateIcon fontSize="large" />
+          </div>
+        </div>
+        <div className="timeBox">
+          <div className="gatheringDay">
+            <div className="gatheringDayText inlineBlock">모임예정일</div>
+            <div className="gatheringDayContent inlineBlock">
+              <LocalizationProvider dateAdapter={AdapterDayjs}>
+                <DateTimePicker
+                  value={gatheringDay}
+                  onChange={handleGatheringDay}
+                  renderInput={params => <TextField {...params} />}
+                />
+              </LocalizationProvider>
             </div>
           </div>
-
-          <div className="hoho hoho2">
-            <div className="hehe">
-              <h2 className="h2g">분류선택</h2>
+          <div className="deadLine">
+            <div className="deadLineText inlineBlock">모집마감일</div>
+            <div className="deadLineContent inlineBlock">
+              <LocalizationProvider dateAdapter={AdapterDayjs}>
+                <DateTimePicker
+                  value={deadLine}
+                  onChange={handleDeadLine}
+                  renderInput={params => <TextField {...params} />}
+                />
+              </LocalizationProvider>
             </div>
           </div>
-        </Box>
-      )}
+        </div>
+      </Box>
     </div>
   );
 };
