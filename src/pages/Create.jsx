@@ -5,6 +5,10 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import InputAdornment from '@mui/material/InputAdornment';
 import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+import InputLabel from '@mui/material/InputLabel';
 
 import dayjs from 'dayjs';
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
@@ -33,6 +37,15 @@ const Create = () => {
   };
   const [fileImage, setFileImage] = useState('');
 
+  const [region, setRegion] = useState('');
+  const handleRegion = event => {
+    setRegion(event.target.value);
+  };
+
+  const [category, setCategory] = useState('');
+  const handleCategory = event => {
+    setCategory(event.target.value);
+  };
   return (
     <div>
       <header></header>
@@ -50,6 +63,7 @@ const Create = () => {
           <TextField
             id="outlined-textarea"
             fullWidth
+            placeholder="제목을 입력해 주세요"
             InputProps={{
               endAdornment: <InputAdornment position="end"></InputAdornment>,
             }}
@@ -72,6 +86,16 @@ const Create = () => {
             </div>
           )}
         </div>
+        <div className="textContent">
+          <TextField
+            id="outlined-textarea"
+            fullWidth
+            placeholder="내용을 입력해 주세요"
+            multiline
+            rows={18}
+          />
+        </div>
+
         <div className="timeBox">
           <div className="gatheringDay">
             <div className="gatheringDayText inlineBlock">모임예정일</div>
@@ -97,6 +121,48 @@ const Create = () => {
               </LocalizationProvider>
             </div>
           </div>
+        </div>
+        <div className="options">
+          <TextField
+            id="outlined-basic"
+            type="number"
+            label="최소인원"
+            variant="outlined"
+          />
+          <TextField
+            id="outlined-basic"
+            type="number"
+            label="최대인원"
+            variant="outlined"
+          />
+          <FormControl sx={{ width: '20%' }}>
+            <InputLabel id="demo-simple-select-label">지역</InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              value={region}
+              label="region"
+              onChange={handleRegion}
+            >
+              <MenuItem value={'지역1'}>지역1</MenuItem>
+              <MenuItem value={'지역2'}>지역2</MenuItem>
+              <MenuItem value={'지역3'}>지역3</MenuItem>
+            </Select>
+          </FormControl>
+          <FormControl sx={{ width: '20%' }}>
+            <InputLabel id="demo-simple-select-label">카테고리</InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              value={category}
+              label="category"
+              onChange={handleCategory}
+            >
+              <MenuItem value={'범주1'}>범주1</MenuItem>
+              <MenuItem value={'범주2'}>범주2</MenuItem>
+              <MenuItem value={'범주3'}>범주3</MenuItem>
+            </Select>
+          </FormControl>
         </div>
       </Box>
     </div>
