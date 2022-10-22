@@ -9,11 +9,27 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import InputLabel from '@mui/material/InputLabel';
+import Button from '@mui/material/Button';
+import { styled } from '@mui/material/styles';
 
 import dayjs from 'dayjs';
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+
+const StyledButton = styled(Button)({
+  border: '1px solid',
+  fontSize: '18px',
+  color: 'black',
+  backgroundColor: '#F9FAFB',
+  borderColor: '#EEEFF2',
+  width: '20%',
+  '&:hover': {
+    backgroundColor: '#e4e6e7',
+    borderColor: '#bdbec2',
+    boxShadow: 'none',
+  },
+});
 
 const Create = () => {
   const [gatheringDay, setGatheringDay] = useState(
@@ -124,18 +140,20 @@ const Create = () => {
         </div>
         <div className="options">
           <TextField
+            sx={{ width: '24%' }}
             id="outlined-basic"
             type="number"
             label="최소인원"
             variant="outlined"
           />
           <TextField
+            sx={{ width: '24%' }}
             id="outlined-basic"
             type="number"
             label="최대인원"
             variant="outlined"
           />
-          <FormControl sx={{ width: '20%' }}>
+          <FormControl sx={{ width: '24%' }}>
             <InputLabel id="demo-simple-select-label">지역</InputLabel>
             <Select
               labelId="demo-simple-select-label"
@@ -149,7 +167,7 @@ const Create = () => {
               <MenuItem value={'지역3'}>지역3</MenuItem>
             </Select>
           </FormControl>
-          <FormControl sx={{ width: '20%' }}>
+          <FormControl sx={{ width: '24%' }}>
             <InputLabel id="demo-simple-select-label">카테고리</InputLabel>
             <Select
               labelId="demo-simple-select-label"
@@ -163,6 +181,10 @@ const Create = () => {
               <MenuItem value={'범주3'}>범주3</MenuItem>
             </Select>
           </FormControl>
+        </div>
+        <div className="buttons">
+          <StyledButton>만들기</StyledButton>
+          <StyledButton>취소</StyledButton>
         </div>
       </Box>
     </div>

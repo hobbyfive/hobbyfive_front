@@ -88,3 +88,12 @@ header {
   display: flex;
   justify-content: space-evenly;
 }
+
+.buttons {
+  margin: 6vh 3vh 4vh 3vh;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-around;
+}
