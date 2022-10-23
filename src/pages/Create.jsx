@@ -17,6 +17,8 @@ import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 
+import ClubDetail from '../components/ClubDetail';
+
 const StyledButton = styled(Button)({
   border: '1px solid',
   fontSize: '18px',
@@ -185,6 +187,7 @@ const Create = () => {
         <div className="buttons">
           <StyledButton>만들기</StyledButton>
           <StyledButton>취소</StyledButton>
+          <ClubDetail />
         </div>
       </Box>
     </div>
