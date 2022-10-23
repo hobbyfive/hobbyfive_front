@@ -1,0 +1,34 @@
+.dTitleArea {
+  display: flex;
+  justify-content: space-between;
+}
+
+.dClubTitle {
+  font-size: 4vh;
+  display : flex;
+  justify-content : center;
+  align-items : center;
+}
+
+.dGatheringDay {
+  margin: 1vh;
+}
+
+.dDeadLine {
+  margin: 1vh;
+}
+
+.dOptions {
+  display: flex;
+  justify-content: space-between;
+}
+
+.dRegion {
+  font-size: 2vh;
+  margin: 1vh;
+}
+
+.dCategory {
+  font-size: 2vh;
+  margin: 1vh;
+}
