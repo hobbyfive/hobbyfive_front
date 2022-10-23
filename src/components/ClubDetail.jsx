@@ -6,6 +6,7 @@ import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
 import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
+import GroupsIcon from '@mui/icons-material/Groups';
 
 const style = {
   position: 'absolute',
@@ -18,12 +19,21 @@ const style = {
   backgroundColor: 'white',
   borderRadius: '15px',
   border: '1px solid #EEEFF2',
+  overflowY: 'scroll',
+  height: '90%',
 };
 
 export default function ClubDetail() {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+
+  const [region, setRegion] = useState(['지역1(dummy)', '지역2(dummy)']);
+  const [category, setCategory] = useState([
+    '범주1(dummy)',
+    '범주2(dummy)',
+    '범주3(dummy)',
+  ]);
 
   return (
     <div>
@@ -61,12 +71,40 @@ export default function ClubDetail() {
           <hr />
           <div className="dOptions">
             <div className="dLeftOptions">
-              <div className="dRegion">Region</div>
-              <div className="dCategory">Category</div>
+              <div className="dRegion">
+                <div className="dRegionText">Region</div>
+                <div className="dRegionContent">
+                  {region.map(v => {
+                    return <Chip label={v} sx={{ mr: '0.5vw' }} />;
+                  })}
+                </div>
+              </div>
+              <div className="dCategory">
+                <div className="dCategoryText">Category</div>
+                <div className="dCategoryContent">
+                  {category.map(v => {
+                    return (
+                      <Chip label={v} variant="outlined" sx={{ mr: '0.5vw' }} />
+                    );
+                  })}
+                </div>
+              </div>
             </div>
-            <div className="dParticipants"></div>
+            <div className="dParticipants">
+              <div className="dIcon">
+                <GroupsIcon sx={{ fontSize: '4vh' }} />
+              </div>
+              <div className="dNum">3 / 6</div>
+            </div>
           </div>
           <hr />
+          <div className="dImageBox">
+            <img
+              src="https://i.picsum.photos/id/377/1000/1000.jpg?hmac=X5DlFTiYUTtO6JBLOBmUOMPUAgvC8BefyGtLHNAmOWk"
+              alt=""
+              className="dImage"
+            />
+          </div>
         </Box>
       </Modal>
     </div>
