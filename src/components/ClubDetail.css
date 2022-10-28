@@ -5,9 +5,9 @@
 
 .dClubTitle {
   font-size: 4vh;
-  display : flex;
-  justify-content : center;
-  align-items : center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .dGatheringDay {
@@ -44,11 +44,11 @@
 
 .dCategoryText {
   display: inline-block;
-  margin-right: 2.5vh; 
+  margin-right: 2.5vh;
 }
 
 .dCategoryContent {
-  display: inline-block; 
+  display: inline-block;
 }
 
 .dParticipants {
@@ -74,4 +74,8 @@
   border-radius: 15px;
   width: 50%;
   height: 50%;
+}
+
+.dTextContent {
+  margin-top: 1vh;
 }

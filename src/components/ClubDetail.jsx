@@ -7,6 +7,7 @@ import Modal from '@mui/material/Modal';
 import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
 import GroupsIcon from '@mui/icons-material/Groups';
+import TextField from '@mui/material/TextField';
 
 const style = {
   position: 'absolute',
@@ -103,6 +104,15 @@ export default function ClubDetail() {
               src="https://i.picsum.photos/id/377/1000/1000.jpg?hmac=X5DlFTiYUTtO6JBLOBmUOMPUAgvC8BefyGtLHNAmOWk"
               alt=""
               className="dImage"
+            />
+          </div>
+          <div className="dTextContent">
+            <TextField
+              id="outlined-textarea"
+              fullWidth
+              value={"ggggggggg"}
+              multiline
+              rows={18}
             />
           </div>
         </Box>
