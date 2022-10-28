@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import { Navigate } from 'react-router';
+import { useNavigate } from "react-router-dom";
 import './SignUp.css'
 
 function SignUp() {
@@ -8,6 +8,7 @@ function SignUp() {
   const [confirmPassword, setConfirmPassword] = useState("")
   const [name, setName] = useState("")
   const [nickname, setNickName] = useState("")
+  const navigate = useNavigate();
 
 
   const onEmailHandler = (event) => {
@@ -34,7 +35,7 @@ function SignUp() {
     if(password !== confirmPassword) {
       return alert('비밀번호와 비밀번호확인은 같아야 합니다.')
     } else {
-      document.location.href('/')
+      navigate("/");
     }
   }
 
