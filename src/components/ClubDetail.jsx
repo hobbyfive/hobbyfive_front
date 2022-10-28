@@ -8,6 +8,7 @@ import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
 import GroupsIcon from '@mui/icons-material/Groups';
 import TextField from '@mui/material/TextField';
+import { styled } from '@mui/material/styles';
 
 const style = {
   position: 'absolute',
@@ -23,6 +24,20 @@ const style = {
   overflowY: 'scroll',
   height: '90%',
 };
+
+const StyledButton = styled(Button)({
+  border: '1px solid',
+  fontSize: '18px',
+  color: 'black',
+  backgroundColor: '#F9FAFB',
+  borderColor: '#EEEFF2',
+  width: '20%',
+  '&:hover': {
+    backgroundColor: '#e4e6e7',
+    borderColor: '#bdbec2',
+    boxShadow: 'none',
+  },
+});
 
 export default function ClubDetail() {
   const [open, setOpen] = useState(false);
@@ -114,6 +129,10 @@ export default function ClubDetail() {
               multiline
               rows={18}
             />
+          </div>
+          <div className="dButtons">
+            <StyledButton>참가신청 or 모집마감</StyledButton>
+            <StyledButton>닫기</StyledButton>
           </div>
         </Box>
       </Modal>
