@@ -76,7 +76,14 @@ const Create = () => {
         }}
       >
         <div className="title">
-          <input type="text" class="form-control" placeholder="제목을 입력해 주세요." id="inputDefault" />
+          <TextField
+            id="outlined-textarea"
+            fullWidth
+            placeholder="제목을 입력해 주세요"
+            InputProps={{
+              endAdornment: <InputAdornment position="end"></InputAdornment>,
+            }}
+          />
         </div>
         <div className="imageBox" onClick={handleButtonClick}>
           {fileImage && (
@@ -96,14 +103,18 @@ const Create = () => {
           )}
         </div>
         <div className="textContent">
-          <textarea class="form-control form-control-lg" type="text" placeholder="내용을 입력해 주세요." id="inputLarge" rows="18" />
-
+          <TextField
+            id="outlined-textarea"
+            fullWidth
+            placeholder="내용을 입력해 주세요"
+            multiline
+            rows={18}
+          />
         </div>
 
         <div className="timeBox">
-          <div className="breadcrumb gatheringDay">
-            {/* <div className="gatheringDayText inlineBlock">모임예정일</div> */}
-            <h3 className="mr3">모임 예정일</h3>
+          <div className="gatheringDay">
+            <div className="gatheringDayText inlineBlock">모임예정일</div>
             <div className="gatheringDayContent inlineBlock">
               <LocalizationProvider dateAdapter={AdapterDayjs}>
                 <DateTimePicker
@@ -114,9 +125,8 @@ const Create = () => {
               </LocalizationProvider>
             </div>
           </div>
-          <div className="breadcrumb deadLine ">
-            {/* <div className="deadLineText inlineBlock">모집마감일</div> */}
-            <h3 className="mr3">모집 마감일</h3>
+          <div className="deadLine">
+            <div className="deadLineText inlineBlock">모집마감일</div>
             <div className="deadLineContent inlineBlock">
               <LocalizationProvider dateAdapter={AdapterDayjs}>
                 <DateTimePicker
@@ -129,62 +139,52 @@ const Create = () => {
           </div>
         </div>
         <div className="options">
-          <div className='breadcrumb uicenter'>
-            <TextField
-              sx={{ width: '100%' }}
-              id="outlined-basic"
-              type="number"
-              label="최소인원"
-              variant="standard"
-            />
-          </div>
-          <div className='breadcrumb uicenter'>
-            <TextField
-              sx={{ width: '100%' }}
-              id="outlined-basic"
-              type="number"
-              label="최대인원"
-              variant="standard"
-            />
-          </div>
-          <div className='breadcrumb uicenter'>
-            <FormControl sx={{ width: '100%' }}>
-              <InputLabel id="demo-simple-select-label">지역</InputLabel>
-              <Select
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
-                value={region}
-                label="region"
-                onChange={handleRegion}
-                variant="standard"
-              >
-                <MenuItem value={'지역1'}>지역1</MenuItem>
-                <MenuItem value={'지역2'}>지역2</MenuItem>
-                <MenuItem value={'지역3'}>지역3</MenuItem>
-              </Select>
-            </FormControl>
-          </div>
-          <div className='breadcrumb uicenter'>
-            <FormControl sx={{ width: '100%' }}>
-              <InputLabel id="demo-simple-select-label">카테고리</InputLabel>
-              <Select
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
-                value={category}
-                label="category"
-                onChange={handleCategory}
-                variant="standard"
-              >
-                <MenuItem value={'범주1'}>범주1</MenuItem>
-                <MenuItem value={'범주2'}>범주2</MenuItem>
-                <MenuItem value={'범주3'}>범주3</MenuItem>
-              </Select>
-            </FormControl>
-          </div>
+          <TextField
+            sx={{ width: '24%' }}
+            id="outlined-basic"
+            type="number"
+            label="최소인원"
+            variant="outlined"
+          />
+          <TextField
+            sx={{ width: '24%' }}
+            id="outlined-basic"
+            type="number"
+            label="최대인원"
+            variant="outlined"
+          />
+          <FormControl sx={{ width: '24%' }}>
+            <InputLabel id="demo-simple-select-label">지역</InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              value={region}
+              label="region"
+              onChange={handleRegion}
+            >
+              <MenuItem value={'지역1'}>지역1</MenuItem>
+              <MenuItem value={'지역2'}>지역2</MenuItem>
+              <MenuItem value={'지역3'}>지역3</MenuItem>
+            </Select>
+          </FormControl>
+          <FormControl sx={{ width: '24%' }}>
+            <InputLabel id="demo-simple-select-label">카테고리</InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              value={category}
+              label="category"
+              onChange={handleCategory}
+            >
+              <MenuItem value={'범주1'}>범주1</MenuItem>
+              <MenuItem value={'범주2'}>범주2</MenuItem>
+              <MenuItem value={'범주3'}>범주3</MenuItem>
+            </Select>
+          </FormControl>
         </div>
         <div className="buttons">
-          <button type="button" class="btn btn-outline-success">만들기</button>
-          <button type="button" class="btn btn-outline-danger">취소</button>
+          <StyledButton>만들기</StyledButton>
+          <StyledButton>취소</StyledButton>
         </div>
       </Box>
     </div>
