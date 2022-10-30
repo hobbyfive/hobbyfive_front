@@ -3,6 +3,7 @@ import Main from './pages/Main';
 import SignUp from './pages/SignUp';
 import Create from './pages/Create';
 import MyPage from './pages/MyPage';
+import LoginButton from './pages/LoginButton';
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
     <Route path="/signup" element={<SignUp />} />
     <Route path="/create" element={<Create />} />
     <Route path="/mypage" element={<MyPage />} /> 
+    <Route path="/loginbutton" element={<LoginButton />} />
   </Routes>
   );
 }

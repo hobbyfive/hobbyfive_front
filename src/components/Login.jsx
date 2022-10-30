@@ -13,21 +13,21 @@ class Login extends Component {
     this.setState({ [name]: value });
   };   ////계산된 속성명 사용
 
-  loginClickHandler = () => {
-    const { email, password } = this.state;
-    fetch("http://10.58.2.17:8000/auth/login", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        email,
-        password,
-      }),
-    })
-      .then((res) => res.json())
-      .then((res) => console.log(res));
-  }; 
+//   loginClickHandler = () => {
+//     const { email, password } = this.state;
+//     fetch("/login", {
+//       method: "POST",
+//       headers: {
+//         "Content-Type": "application/json",
+//       },
+//       body: JSON.stringify({
+//         email,
+//         password,
+//       }),
+//     })
+//       .then((res) => res.json())
+//       .then((res) => console.log(res));
+//   }; 
 
   render() {
     const { isOpen, close } = this.props;   //아까 버튼에서 props로 가져온것
@@ -66,13 +66,6 @@ class Login extends Component {
                     placeholder="비밀번호"
                     onChange={this.loginHandler}
                   />
-                  <div className="loginMid">
-                    <label className="autoLogin" for="hint">
-                      {" "}
-                      <input type="checkbox" id="hint" /> 로그인 유지하기
-                    </label>
-                    <div className="autoLogin">아이디/비밀번호 찾기</div>
-                  </div>
                   <button className="loginBtn" onClick={this.loginClickHandler}>
                     {" "}
                     로그인{" "}

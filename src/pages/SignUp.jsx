@@ -8,6 +8,7 @@ function SignUp() {
   const [confirmPassword, setConfirmPassword] = useState("")
   const [name, setName] = useState("")
   const [nickname, setNickName] = useState("")
+  const [company, setCompany] = useState("")
   const navigate = useNavigate();
 
 
@@ -31,6 +32,10 @@ function SignUp() {
     setNickName(event.currentTarget.value)
   }
 
+  const onCompanyHandler = (event) => {
+    setCompany(event.currentTarget.value)
+  }
+
   const onSubmit = () => {
     if(password !== confirmPassword) {
       return alert('비밀번호와 비밀번호확인은 같아야 합니다.')
@@ -47,6 +52,7 @@ function SignUp() {
           <div className="form-floating mb-3"><input name="confirmPassword" type="password" placeholder="ConfirmPassword" value={confirmPassword} onChange={onConfirmPasswordHandler} className="form-control"/><label for="floatingInput">Confirm Password</label></div>
           <div className="form-floating mb-3"><input name="name" type="text" placeholder="Name" value={name} onChange={onNameHandler} className="form-control"/><label for="floatingInput">Name</label></div>
           <div className="form-floating mb-3"><input name="nickname" type="text" placeholder="NickName" value={nickname} onChange={onNickNameHandler} className="form-control"/><label for="floatingInput">Nickname</label></div>
+          <div className="form-floating mb-3"><input name="company" type="text" placeholder="Company" value={company} onChange={onCompanyHandler} className="form-control"/><label for="floatingInput">Company</label></div>
           <div className="form-check">
             <input id="gender_man" type="radio" name="gender" className="form-check-input"/><label className="form-check-label" for="gender_man">
               I am a man.</label></div>
