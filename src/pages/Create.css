@@ -11,55 +11,59 @@ header {
   text-align: center;
 }
 
-.timeBox{
+.timeBox {
   display: flex;
   justify-content: space-around;
   padding: 1vh;
 }
 
-.inlineBlock{
-  display: inline-block; 
+.inlineBlock {
+  display: inline-block;
   vertical-align: middle;
 }
 
-.gatheringDay{
-  padding: 2vh;  
+.gatheringDay {
+  padding: 2vh;
   border: 1px solid #EEEFF2;
   border-radius: 15px;
   margin: 1vh;
   width: 50%;
+  display: flex;
+  align-items: center;
 }
 
 .deadLine {
-  padding: 2vh;  
+  padding: 2vh;
   border: 1px solid #EEEFF2;
   border-radius: 15px;
   margin: 1vh;
   width: 50%;
+  display: flex;
+  align-items: center;
 }
 
 .gatheringDayText {
-  width: 50%;
-  text-align: center;  
-  font-size: 1.5rem;
-}
-
-.deadLineText{
   width: 50%;
   text-align: center;
   font-size: 1.5rem;
 }
 
-.title{
+.deadLineText {
+  width: 50%;
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+.title {
   margin: 1vh;
   padding: 1vh;
 }
 
-.imageBox{
+.imageBox {
   margin: 0 auto;
   border: 1px solid #EEEFF2;
   border-radius: 15px;
-  width: 96%; 
+  width: 96%;
   background-color: #F9FAFB;
   cursor: pointer;
   display: flex;
@@ -70,7 +74,7 @@ header {
   display: flex;
   justify-content: center;
   margin: 5vh;
-  
+
 }
 
 .uploadedImage {
