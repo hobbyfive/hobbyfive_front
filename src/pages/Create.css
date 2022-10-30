@@ -15,6 +15,7 @@ header {
   display: flex;
   justify-content: space-around;
   padding: 1vh;
+  margin-top: 4vh;
 }
 
 .inlineBlock {
@@ -24,8 +25,8 @@ header {
 
 .gatheringDay {
   padding: 2vh;
-  border: 1px solid #EEEFF2;
-  border-radius: 15px;
+  /* border: 1px solid #EEEFF2;
+  border-radius: 15px; */
   margin: 1vh;
   width: 50%;
   display: flex;
@@ -35,8 +36,8 @@ header {
 
 .deadLine {
   padding: 2vh;
-  border: 1px solid #EEEFF2;
-  border-radius: 15px;
+  /* border: 1px solid #EEEFF2;
+  border-radius: 15px; */
   margin: 1vh;
   width: 50%;
   display: flex;
@@ -91,8 +92,6 @@ header {
 
 .options {
   margin: 1.5vh 1.5vh 3vh 1.5vh;
-  display: flex;
-  justify-content: space-evenly;
 }
 
 .buttons {
@@ -108,9 +107,28 @@ header {
   margin-right: 1vw;
 }
 
-.uicenter {
+.inputf {
+  width: 96%;
+  margin-left: 1vw;
+}
+
+.form-label {
+  margin-top: 1vh;
+}
+
+.optionlable {
+  display: inline-block;
+  margin-left: 2vh;
+  margin-right: 3vh;
+}
+
+.optioninput {
+  display: inline-block;
+  width: 30%;
+}
+
+.marbo {
+  margin-bottom: 2vh;
   display: flex;
   align-items: center;
-  justify-content: center;
-  width: 25%;
 }

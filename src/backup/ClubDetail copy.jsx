@@ -122,13 +122,18 @@ export default function ClubDetail() {
             />
           </div>
           <div className="dTextContent">
-            <textarea class="form-control" id="exampleTextarea" rows="8" disabled value={"ggggggggggggg"}></textarea>
+            <TextField
+              id="outlined-textarea"
+              fullWidth
+              value={"ggggggggg"}
+              multiline
+              rows={18}
+            />
           </div>
           <div className="dButtons">
             <StyledButton>참가신청 or 모집마감</StyledButton>
             <StyledButton>닫기</StyledButton>
           </div>
-
         </Box>
       </Modal>
     </div>
