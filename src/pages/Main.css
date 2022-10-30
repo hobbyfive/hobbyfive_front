@@ -1,0 +1,65 @@
+.right_box {
+    text-align: right;
+}
+
+.left_box {
+    text-align: left;
+}
+
+.center_box {
+    text-align: center;
+}
+
+.login {
+    margin-right:10px;
+}
+
+.join {
+    margin-right: 30px;
+}
+
+.wrap {
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 20px;
+}
+
+.menuBar {
+    position:relative;
+    width:100%;
+}
+
+.tabs {
+    -webkit-padding-start: 0px;
+    margin: 0 auto;
+    width: 100%;
+    display: flex;
+}
+
+.tabs li {
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 1rem;
+    text-align: center;
+    display:inline-block;
+    width: 50%;
+}
+.tabs li.active {
+    border-top: 2px solid gray;
+    border-left: 2px solid gray;
+    border-right: 2px solid gray;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    width: 50%;
+}
+
+.tabs li.inactive {
+    border-bottom: 2px solid gray;
+}
+
+.contents {
+    border-left: 2px solid gray;
+    border-right: 2px solid gray;
+    border-bottom: 2px solid gray;
+    margin-bottom: 20px;
+}
