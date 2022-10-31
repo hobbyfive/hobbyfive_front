@@ -4,7 +4,7 @@ import SignUp from './pages/SignUp';
 import Create from './pages/Create';
 import MyPage from './pages/MyPage';
 import LoginButton from './pages/LoginButton';
-import '/node_modules/bootstrap/dist/css/bootstrap.css';
+import '../node_modules/bootstrap/dist/css/bootstrap.css'
 
 function App() {
   return (

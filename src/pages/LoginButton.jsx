@@ -1,16 +1,15 @@
 import React, { useState } from "react";
 import { LoginModal } from "../components/LoginModal";
-import { Login } from "../components/Login";
+import './SignUp.css'
  
 function LoginButton(props) {
   const [login, setLogin] = useState(false);
  
   return (
-    <div className="LoginButton">
-      <input type="button" value="로그인" className="blueBtn" onClick={() => setLogin(!login)}/>
+    <div>
+      <input type="button" value="로그인" className="btn btn-primary" onClick={() => setLogin(!login)}/>
       {login && (
-        <LoginModal>
-          <Login />
+        <LoginModal closeModal={() => setLogin(!login)}>
         </LoginModal>
       )}
     </div>
