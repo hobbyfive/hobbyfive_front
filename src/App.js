@@ -3,7 +3,7 @@ import Main from './pages/Main';
 import Join from './pages/Join';
 import Create from './pages/Create';
 import MyPage from './pages/MyPage';
-import Tmp from './pages/temp/Tmp';
+import Tmp from './backup/temp/Tmp';
 import ModalTemp from './pages/ModalTemp';
 
 function App() {

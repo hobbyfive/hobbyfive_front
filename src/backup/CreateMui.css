@@ -30,7 +30,6 @@ header {
   width: 50%;
   display: flex;
   align-items: center;
-  justify-content: center;
 }
 
 .deadLine {
@@ -41,7 +40,6 @@ header {
   width: 50%;
   display: flex;
   align-items: center;
-  justify-content: center;
 }
 
 .gatheringDayText {
@@ -102,15 +100,4 @@ header {
 .buttons {
   display: flex;
   justify-content: space-around;
-}
-
-.mr3 {
-  margin-right: 1vw;
-}
-
-.uicenter {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 25%;
 }

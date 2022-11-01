@@ -79,3 +79,9 @@
 .dTextContent {
   margin-top: 1vh;
 }
+
+.dButtons {
+  margin-top: 3vh;
+  display: flex;
+  justify-content: space-around;
+}
