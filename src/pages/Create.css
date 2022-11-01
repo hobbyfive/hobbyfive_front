@@ -1,0 +1,134 @@
+body {
+  background-color: #F9FAFB;
+}
+
+header {
+  height: 5vh;
+  background-color: #1F2937;
+}
+
+.pageTitle {
+  text-align: center;
+}
+
+.timeBox {
+  display: flex;
+  justify-content: space-around;
+  padding: 1vh;
+  margin-top: 4vh;
+}
+
+.inlineBlock {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.gatheringDay {
+  padding: 2vh;
+  /* border: 1px solid #EEEFF2;
+  border-radius: 15px; */
+  margin: 1vh;
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.deadLine {
+  padding: 2vh;
+  /* border: 1px solid #EEEFF2;
+  border-radius: 15px; */
+  margin: 1vh;
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gatheringDayText {
+  width: 50%;
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+.deadLineText {
+  width: 50%;
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+.title {
+  margin: 1vh;
+  padding: 1vh;
+}
+
+.imageBox {
+  margin: 0 auto;
+  border: 1px solid #EEEFF2;
+  border-radius: 15px;
+  width: 50%;
+  background-color: #F9FAFB;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+}
+
+.muiIcon {
+  display: flex;
+  justify-content: center;
+  margin: 5vh;
+
+}
+
+.uploadedImage {
+  border-radius: 15px;
+  width: 100%;
+  height: 100%;
+}
+
+.textContent {
+  margin: 2vh 2vh 0 2vh;
+}
+
+.options {
+  margin: 1.5vh 1.5vh 3vh 1.5vh;
+}
+
+.buttons {
+  margin: 6vh 3vh 4vh 3vh;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-around;
+}
+
+.mr3 {
+  margin-right: 1vw;
+}
+
+.inputf {
+  width: 96%;
+  margin-left: 1vw;
+}
+
+.form-label {
+  margin-top: 1vh;
+}
+
+.optionlable {
+  display: inline-block;
+  margin-left: 2vh;
+  margin-right: 3vh;
+}
+
+.optioninput {
+  display: inline-block;
+  width: 30%;
+}
+
+.marbo {
+  margin-bottom: 2vh;
+  display: flex;
+  align-items: center;
+}

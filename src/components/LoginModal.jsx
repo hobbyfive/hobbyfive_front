@@ -1,17 +1,13 @@
 import React from "react"; 
 import { requestLogin } from "./Auth";
+import '../pages/Modal.css'
 
-function LoginModal(props) {
+const LoginModal = ({closeLoginModal}) => {
  
-function closeModal() {
-    props.closeModal();
-  }
  
   return (
-    <div className="modal" onClick={closeModal}>
-      <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-        <div className="modal custom-modal">
-          <div className="modal-dialog" role="document">
+    <div className="modal custom-modal" onClick={closeLoginModal}>
+      <div className="modal-dialog" role="document">
             <div className="modal-content">
               <div className="modal-header">
                 <h5 className="modal-title">Login</h5>
@@ -28,12 +24,10 @@ function closeModal() {
               </div>
               <div className="modal-footer">
                 <button type="button" className="btn btn-primary" onClick={requestLogin}>Login</button>
-                <button type="button" className="btn btn-secondary" data-bs-dismiss="modal" onClick={closeModal}>Close</button>
+                <button type="button" className="btn btn-secondary" data-bs-dismiss="modal" onClick={closeLoginModal}>Close</button>
               </div>
             </div>
           </div>
-        </div>
-      </div>
     </div>
   );
 }
