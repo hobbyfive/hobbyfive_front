@@ -7,6 +7,7 @@
 }
 
 .center_box {
+    margin-top: 20px;
     text-align: center;
 }
 
@@ -51,6 +52,7 @@
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
     width: 50%;
+    background-color: rgb(248, 234, 255);
 }
 
 .tabs li.inactive {
@@ -62,4 +64,5 @@
     border-right: 2px solid gray;
     border-bottom: 2px solid gray;
     margin-bottom: 20px;
+    background-color: rgb(248, 234, 255);
 }
