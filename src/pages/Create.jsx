@@ -76,34 +76,31 @@ const Create = () => {
         }}
       >
         <div className="title">
+          <legend>Title</legend>
           <input type="text" class="form-control" placeholder="제목을 입력해 주세요." id="inputDefault" />
         </div>
-        <div className="imageBox" onClick={handleButtonClick}>
-          {fileImage && (
-            <img alt="sample" src={fileImage} className="uploadedImage" />
-          )}
-          {!fileImage && (
-            <div className="muiIcon">
-              <AddPhotoAlternateIcon fontSize="large" />
-              <input
-                type="file"
-                accept="image/*"
-                ref={fileInput}
-                onChange={handleChange}
-                style={{ display: 'none' }}
-              />
-            </div>
-          )}
-        </div>
-        <div className="textContent">
-          <textarea class="form-control form-control-lg" type="text" placeholder="내용을 입력해 주세요." id="inputLarge" rows="18" />
 
+
+        {fileImage && (
+          <div className="imageBox">
+            <img alt="sample" src={fileImage} className="uploadedImage" />
+          </div>
+        )}
+
+
+        <div className="textContent">
+          <legend>Contents</legend>
+          <textarea class="form-control form-control-lg" type="text" placeholder="내용을 입력해 주세요." id="inputLarge" rows="6" />
+        </div>
+        <div className='inputf'>
+          <label for="formFile" class="form-label">Image</label>
+          <input class="form-control" type="file" accept="image/*" id="formFile" onChange={handleChange} />
         </div>
 
         <div className="timeBox">
-          <div className="breadcrumb gatheringDay">
-            {/* <div className="gatheringDayText inlineBlock">모임예정일</div> */}
-            <h3 className="mr3">모임 예정일</h3>
+          <div className="gatheringDay">
+            <div className="gatheringDayText inlineBlock">모임예정일</div>
+            {/* <h3 className="mr3">모임 예정일</h3> */}
             <div className="gatheringDayContent inlineBlock">
               <LocalizationProvider dateAdapter={AdapterDayjs}>
                 <DateTimePicker
@@ -114,9 +111,9 @@ const Create = () => {
               </LocalizationProvider>
             </div>
           </div>
-          <div className="breadcrumb deadLine ">
-            {/* <div className="deadLineText inlineBlock">모집마감일</div> */}
-            <h3 className="mr3">모집 마감일</h3>
+          <div className="deadLine ">
+            <div className="deadLineText inlineBlock">모집마감일</div>
+            {/* <h3 className="mr3">모집 마감일</h3> */}
             <div className="deadLineContent inlineBlock">
               <LocalizationProvider dateAdapter={AdapterDayjs}>
                 <DateTimePicker
@@ -129,59 +126,80 @@ const Create = () => {
           </div>
         </div>
         <div className="options">
-          <div className='breadcrumb uicenter'>
-            <TextField
-              sx={{ width: '100%' }}
-              id="outlined-basic"
-              type="number"
-              label="최소인원"
-              variant="standard"
-            />
-          </div>
-          <div className='breadcrumb uicenter'>
-            <TextField
-              sx={{ width: '100%' }}
-              id="outlined-basic"
-              type="number"
-              label="최대인원"
-              variant="standard"
-            />
-          </div>
-          <div className='breadcrumb uicenter'>
-            <FormControl sx={{ width: '100%' }}>
-              <InputLabel id="demo-simple-select-label">지역</InputLabel>
-              <Select
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
-                value={region}
-                label="region"
-                onChange={handleRegion}
+          <div className='marbo'>
+            <div className='optionlable'>최소인원</div>
+            <div className='optioninput'>
+              <TextField
+                sx={{ width: '50%' }}
+                id="outlined-basic"
+                type="number"
+                // label="최소인원"
                 variant="standard"
-              >
-                <MenuItem value={'지역1'}>지역1</MenuItem>
-                <MenuItem value={'지역2'}>지역2</MenuItem>
-                <MenuItem value={'지역3'}>지역3</MenuItem>
-              </Select>
-            </FormControl>
+              />
+            </div>
           </div>
-          <div className='breadcrumb uicenter'>
-            <FormControl sx={{ width: '100%' }}>
-              <InputLabel id="demo-simple-select-label">카테고리</InputLabel>
-              <Select
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
-                value={category}
-                label="category"
-                onChange={handleCategory}
+          <div className='marbo'>
+            <div className='optionlable'>최대인원</div>
+            <div className='optioninput'>
+              <TextField
+                sx={{ width: '50%' }}
+                id="outlined-basic"
+                type="number"
+                // label="최대인원"
                 variant="standard"
-              >
-                <MenuItem value={'범주1'}>범주1</MenuItem>
-                <MenuItem value={'범주2'}>범주2</MenuItem>
-                <MenuItem value={'범주3'}>범주3</MenuItem>
-              </Select>
-            </FormControl>
+              />
+            </div>
+          </div>
+          <div className='marbo'>
+            <div className='optionlable'></div>
+            <div className='optionlable'>지역</div>
+            <div className='optioninput'>
+              <FormControl sx={{ width: '50%' }}>
+                <InputLabel id="demo-simple-select-label"></InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={region}
+                  label="region"
+                  onChange={handleRegion}
+                  variant="standard"
+                >
+                  <MenuItem value={'지역1'}>지역1</MenuItem>
+                  <MenuItem value={'지역2'}>지역2</MenuItem>
+                  <MenuItem value={'지역3'}>지역3</MenuItem>
+                </Select>
+              </FormControl>
+            </div></div>
+
+          <div className='marbo'>
+
+            <div className='optionlable'>카테고리</div>
+            <div className='optioninput'>
+              <FormControl sx={{ width: '50%' }}>
+                <InputLabel id="demo-simple-select-label"></InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={category}
+                  label="category"
+                  onChange={handleCategory}
+                  variant="standard"
+                >
+                  <MenuItem value={'범주1'}>범주1</MenuItem>
+                  <MenuItem value={'범주2'}>범주2</MenuItem>
+                  <MenuItem value={'범주3'}>범주3</MenuItem>
+                </Select>
+              </FormControl>
+            </div>
+
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" />
+              <label class="form-check-label" for="flexSwitchCheckDefault">private</label>
+            </div>
+
           </div>
         </div>
+
         <div className="buttons">
           <button type="button" class="btn btn-outline-success">만들기</button>
           <button type="button" class="btn btn-outline-danger">취소</button>
