@@ -1,5 +1,6 @@
-import React from "react";
- 
+import React from "react"; 
+import { requestLogin } from "./Auth";
+
 function LoginModal(props) {
  
 function closeModal() {
@@ -7,15 +8,15 @@ function closeModal() {
   }
  
   return (
-    <div className="modals" onClick={closeModal}>
-      <div className="modals-content" onClick={(e) => e.stopPropagation()}>
-        <div className="modals custommodals">
-          <div className="modals-dialog" role="document">
-            <div className="modals-content">
-              <div className="modals-header">
-                <h5 className="modals-title">Login</h5>
+    <div className="modal" onClick={closeModal}>
+      <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+        <div className="modal custom-modal">
+          <div className="modal-dialog" role="document">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title">Login</h5>
               </div>
-              <div className="modals-body">
+              <div className="modal-body">
               <div className="form-group">
               <label htmlFor="exampleInputEmail1" className="form-label mt-4">Email address</label>
               <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email"/>
@@ -25,9 +26,9 @@ function closeModal() {
               <input type="password" className="form-control" id="exampleInputPassword1" placeholder="Password"/>
             </div>
               </div>
-              <div className="modals-footer">
-                <button type="button" className="btn btn-primary">Login</button>
-                <button type="button" className="btn btn-secondary" data-bs-dismiss="modals" onClick={closeModal}>Close</button>
+              <div className="modal-footer">
+                <button type="button" className="btn btn-primary" onClick={requestLogin}>Login</button>
+                <button type="button" className="btn btn-secondary" data-bs-dismiss="modal" onClick={closeModal}>Close</button>
               </div>
             </div>
           </div>
