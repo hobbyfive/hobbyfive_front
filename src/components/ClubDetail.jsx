@@ -126,7 +126,7 @@ export default function ClubDetail({ clubId }) {
           </div>
           <div className="dButtons">
             <StyledButton>참가신청 or 모집마감</StyledButton>
-            <StyledButton>닫기</StyledButton>
+            <StyledButton onClick={handleClose}>닫기</StyledButton>
           </div>
 
         </Box>
