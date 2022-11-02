@@ -33,7 +33,7 @@ const StyledButton = styled(Button)({
 
 const Create = () => {
   const [gatheringDay, setGatheringDay] = useState(
-    dayjs('2022-11-04T18:00:00'),
+    dayjs('2022-11-04T18:00:01'),
   );
   const [deadLine, setDeadLine] = useState(dayjs('2022-11-04T18:00:00'));
   const handleGatheringDay = newValue => {
