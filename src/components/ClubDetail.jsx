@@ -1,48 +1,15 @@
 import React, { useState } from 'react';
 import './ClubDetail.css';
+import '../pages/Modal.css'
 
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import Modal from '@mui/material/Modal';
 import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
 import GroupsIcon from '@mui/icons-material/Groups';
-import TextField from '@mui/material/TextField';
-import { styled } from '@mui/material/styles';
 
-const style = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  boxShadow: 24,
-  padding: 4,
-  width: '65vw',
-  backgroundColor: 'white',
-  borderRadius: '15px',
-  border: '1px solid #EEEFF2',
-  overflowY: 'scroll',
-  height: '90%',
-};
 
-const StyledButton = styled(Button)({
-  border: '1px solid',
-  fontSize: '18px',
-  color: 'black',
-  backgroundColor: '#F9FAFB',
-  borderColor: '#EEEFF2',
-  width: '20%',
-  '&:hover': {
-    backgroundColor: '#e4e6e7',
-    borderColor: '#bdbec2',
-    boxShadow: 'none',
-  },
-});
 
-export default function ClubDetail({ clubId }) {
-  const [open, setOpen] = useState(true);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+export default function ClubDetail({ closeClubModal, clubId }) {
+  
 
   const [region, setRegion] = useState(['지역1(dummy)', '지역2(dummy)']);
   const [category, setCategory] = useState([
@@ -52,17 +19,11 @@ export default function ClubDetail({ clubId }) {
   ]);
 
   return (
-    <div>
-      {/* <Button onClick={handleOpen}>Open modal</Button> */}
-      <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <Box sx={style}>
-          <div className="dTitleArea">
-            <div className="dClubTitle">모임제목(dummy)</div>
+    <div className='modal custom-modal'>
+      <div className='modal-dialog'>
+        <div className='modal-content'>
+          <div className="modal-header">
+            <div className="modal-title">모임제목(dummy)</div>
             <div className="timeArea">
               <div className="dGatheringDay">
                 <Stack direction="row" spacing={1}>
@@ -84,8 +45,7 @@ export default function ClubDetail({ clubId }) {
               </div>
             </div>
           </div>
-          <hr />
-          <div className="dOptions">
+          <div className="modal-body">
             <div className="dLeftOptions">
               <div className="dRegion">
                 <div className="dRegionText">Region</div>
@@ -112,25 +72,25 @@ export default function ClubDetail({ clubId }) {
               </div>
               <div className="dNum">3 / 6</div>
             </div>
-          </div>
-          <hr />
-          <div className="dImageBox">
-            <img
-              src="https://i.picsum.photos/id/377/1000/1000.jpg?hmac=X5DlFTiYUTtO6JBLOBmUOMPUAgvC8BefyGtLHNAmOWk"
-              alt=""
-              className="dImage"
-            />
-          </div>
-          <div className="dTextContent">
-            <textarea class="form-control" id="exampleTextarea" rows="8" disabled value={"ggggggggggggg"}></textarea>
-          </div>
-          <div className="dButtons">
-            <StyledButton>참가신청 or 모집마감</StyledButton>
-            <StyledButton>닫기</StyledButton>
+            <div className="dImageBox">
+              <img
+                src="https://i.picsum.photos/id/377/1000/1000.jpg?hmac=X5DlFTiYUTtO6JBLOBmUOMPUAgvC8BefyGtLHNAmOWk"
+                alt=""
+                className="dImage"
+              />
+            </div>
+            <div className="dTextContent">
+              <textarea class="form-control" id="exampleTextarea" rows="8" disabled value={"ggggggggggggg"}></textarea>
+            </div>
           </div>
 
-        </Box>
-      </Modal>
+          <div className="modal-footer">
+            <button type="button" className='btn btn-primary'>참가신청 or 모집마감</button>
+            <button type="button" className='btn btn-secondary' onClick={closeClubModal}>닫기</button>
+          </div>
+
+        </div>
+      </div>
     </div>
   );
 }
