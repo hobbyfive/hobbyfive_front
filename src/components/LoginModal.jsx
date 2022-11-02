@@ -6,7 +6,7 @@ const LoginModal = ({closeLoginModal}) => {
  
  
   return (
-    <div className="modal custom-modal" onClick={closeLoginModal}>
+    <div className="modal custom-modal">
       <div className="modal-dialog" role="document">
             <div className="modal-content">
               <div className="modal-header">
