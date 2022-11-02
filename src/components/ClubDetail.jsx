@@ -19,7 +19,7 @@ export default function ClubDetail({ closeClubModal, clubId }) {
   ]);
 
   return (
-    <div className='modal custom-modal'>
+    <div className='modal custom-modal fontsizebigger'>
       <div className='modal-dialog'>
         <div className='modal-content'>
           <div className="modal-header">
