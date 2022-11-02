@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { LoginModal } from '../components/LoginModal';
 import ClubList from './ClubList';
+import { SignUpModal } from '../components/SignUpModal';
 
 import './Main.css'
 
@@ -8,9 +9,14 @@ const Main = () => {
 
   const[menu, setMenu] = useState(0);
   const[loginVisible, setLoginVisible] = useState(false);
+  const[SignUpVisible, setSignUpVisible] = useState(false);
 
   const closeLoginModal = () => {
     setLoginVisible(!loginVisible);
+  }
+
+  const closeSignUpModal = () => {
+    setSignUpVisible(!SignUpVisible);
   }
 
   const changeMenu = (menuIndex) =>{
@@ -27,8 +33,9 @@ const Main = () => {
         {/* 로그인, 회원가입 */}
         <div className='right_box'>
         {loginVisible && <LoginModal closeLoginModal={closeLoginModal} />}
-          <button className='login mycolor' onClick={closeLoginModal}>로그인</button>
-          <a className='signup' href="/signup">회원가입</a>
+        {SignUpVisible && <SignUpModal closeSignUpModal={closeSignUpModal} />}
+          <a className='login mycolor' onClick={closeLoginModal}>로그인</a>
+          <a className='signup' onClick={closeSignUpModal}>회원가입</a>
         </div>
 
         {/* 메인 탭 */}

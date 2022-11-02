@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import ClubDetail from '../components/ClubDetail';
 
 import './ClubList.css'
 import FilterModal from './FilterModal';
@@ -6,9 +7,17 @@ import FilterModal from './FilterModal';
 const ClubList = ({selectMenu}) => {
   const [clubList, setClubList] = useState([{title:"모임명1"}, {title:"모임명2"}, {title:"모임명3"}, {title:"모임명4"}]);
   const [filterVisible, setFilterVisible] = useState(false);
+  const [clubVisible, setClubVisible] = useState(false);
+
   const closeFilterModal = () => {
-    setFilterVisible(!filterVisible)
+    setFilterVisible(!filterVisible);
   }
+
+  const closeClubModal = () => {
+    setClubVisible(!clubVisible);
+  }
+
+
   // useEffect(() => {
   //   axios({
   //     method: "get",
@@ -40,9 +49,10 @@ const ClubList = ({selectMenu}) => {
             </div>
             
             <div className='clubs'>
+                {clubVisible && <ClubDetail closeClubModal={closeClubModal} clubId={1}/>}
                 {
                   clubList.map((club, index) => (
-                    <div className="card custom-card" key={index} onClick={closeFilterModal}>
+                    <div className="card custom-card" key={index} onClick={closeClubModal}>
                       <div className="custom-card-body">
                         <img className='custom-card-img' alt="HTML" src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2F05jk8%2FbtqFNhPwZ8D%2FKSyAaHOZKrXHsq56K731e1%2Fimg.png"/>
                         <span className="badge bg-info">모집중</span>
@@ -50,7 +60,7 @@ const ClubList = ({selectMenu}) => {
                         <h4 className="custom-card-title">{club.title}</h4>
                         <p className="card-text">정원 : 2/4</p>
                         <p className="card-text">모임예정일 : 10/26</p>
-                        <p className="card-text">만료일자 : ~까지</p>
+                        <p className="card-text">모집마감일 : ~까지</p>
                       </div>
                     </div>
                   ))

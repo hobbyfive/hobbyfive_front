@@ -64,7 +64,9 @@ const Create = () => {
   };
   return (
     <div>
-      <header></header>
+      <div className='center_box'>
+        <h1>HOBBYFIVE</h1>
+      </div>
       <h1 className="pageTitle">모임 만들기</h1>
       <Box
         sx={{
