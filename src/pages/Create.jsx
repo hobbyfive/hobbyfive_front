@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import './Create.css';
 
 import Box from '@mui/material/Box';
@@ -16,6 +16,7 @@ import dayjs from 'dayjs';
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import axios from 'axios';
 
 const StyledButton = styled(Button)({
   border: '1px solid',
@@ -62,6 +63,21 @@ const Create = () => {
   const handleCategory = event => {
     setCategory(event.target.value);
   };
+
+  // useEffect(() => {
+  //   axios({
+  //     method: "get",
+  //     url: "/emp/emplist.do", // 필터링 조건 , data: ['',''] ?.
+  //   })
+  //     .then((res) => {
+  //       console.log(res);
+  //       console.log(res.data);
+  //     })
+  //     .catch((error) => {
+  //       throw new Error(error);
+  //     });
+  // }, []);
+
   return (
     <div>
       <div className='center_box'>
@@ -128,77 +144,25 @@ const Create = () => {
           </div>
         </div>
         <div className="options">
-          <div className='marbo'>
-            <div className='optionlable'>최소인원</div>
-            <div className='optioninput'>
-              <TextField
-                sx={{ width: '50%' }}
-                id="outlined-basic"
-                type="number"
-                // label="최소인원"
-                variant="standard"
-              />
+          <div className='inputGroup'>
+            <div class="form-group customWidth">
+              <label class="col-form-label col-form-label-lg mt-4" for="inputLarge">최소 인원</label>
+              <input class="form-control form-control-lg" type="text" placeholder="모임의 최소인원을 입력해 주세요" id="inputLarge" />
+            </div>
+            <div class="form-group customWidth">
+              <label class="col-form-label col-form-label-lg mt-4" for="inputLarge">최대 인원</label>
+              <input class="form-control form-control-lg" type="text" placeholder="모임의 최대인원을 입력해 주세요" id="inputLarge" />
             </div>
           </div>
-          <div className='marbo'>
-            <div className='optionlable'>최대인원</div>
-            <div className='optioninput'>
-              <TextField
-                sx={{ width: '50%' }}
-                id="outlined-basic"
-                type="number"
-                // label="최대인원"
-                variant="standard"
-              />
+          <div className='inputGroup'>
+            <div class="form-group customWidth">
+              <label class="col-form-label col-form-label-lg mt-4" for="inputLarge">지역</label>
+              <input class="form-control form-control-lg" type="text" placeholder="" id="inputLarge" />
             </div>
-          </div>
-          <div className='marbo'>
-            <div className='optionlable'></div>
-            <div className='optionlable'>지역</div>
-            <div className='optioninput'>
-              <FormControl sx={{ width: '50%' }}>
-                <InputLabel id="demo-simple-select-label"></InputLabel>
-                <Select
-                  labelId="demo-simple-select-label"
-                  id="demo-simple-select"
-                  value={region}
-                  label="region"
-                  onChange={handleRegion}
-                  variant="standard"
-                >
-                  <MenuItem value={'지역1'}>지역1</MenuItem>
-                  <MenuItem value={'지역2'}>지역2</MenuItem>
-                  <MenuItem value={'지역3'}>지역3</MenuItem>
-                </Select>
-              </FormControl>
-            </div></div>
-
-          <div className='marbo'>
-
-            <div className='optionlable'>카테고리</div>
-            <div className='optioninput'>
-              <FormControl sx={{ width: '50%' }}>
-                <InputLabel id="demo-simple-select-label"></InputLabel>
-                <Select
-                  labelId="demo-simple-select-label"
-                  id="demo-simple-select"
-                  value={category}
-                  label="category"
-                  onChange={handleCategory}
-                  variant="standard"
-                >
-                  <MenuItem value={'범주1'}>범주1</MenuItem>
-                  <MenuItem value={'범주2'}>범주2</MenuItem>
-                  <MenuItem value={'범주3'}>범주3</MenuItem>
-                </Select>
-              </FormControl>
+            <div class="form-group customWidth">
+              <label class="col-form-label col-form-label-lg mt-4" for="inputLarge">카테고리</label>
+              <input class="form-control form-control-lg" type="text" placeholder="" id="inputLarge" />
             </div>
-
-            <div className="form-check form-switch">
-              <input className="form-check-input" type="checkbox" id="flexSwitchCheckDefault" />
-              <label className="form-check-label" for="flexSwitchCheckDefault">private</label>
-            </div>
-
           </div>
         </div>
 

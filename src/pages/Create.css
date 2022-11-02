@@ -149,3 +149,12 @@ header {
   display: flex;
   align-items: center;
 }
+
+.inputGroup {
+  display: flex;
+  justify-content: space-around;
+}
+
+.customWidth {
+  width: 45%;
+}
