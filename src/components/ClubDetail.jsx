@@ -39,8 +39,8 @@ const StyledButton = styled(Button)({
   },
 });
 
-export default function ClubDetail() {
-  const [open, setOpen] = useState(false);
+export default function ClubDetail({ clubId }) {
+  const [open, setOpen] = useState(true);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
@@ -53,7 +53,7 @@ export default function ClubDetail() {
 
   return (
     <div>
-      <Button onClick={handleOpen}>Open modal</Button>
+      {/* <Button onClick={handleOpen}>Open modal</Button> */}
       <Modal
         open={open}
         onClose={handleClose}
