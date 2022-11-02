@@ -38,7 +38,7 @@
 }
 
 .tabs li {
-    font-size: 1rem;
+    font-size: 1.3rem;
     font-weight: bold;
     padding: 1rem;
     text-align: center;
@@ -65,4 +65,10 @@
     border-bottom: 2px solid gray;
     margin-bottom: 20px;
     background-color: rgb(248, 234, 255);
+}
+
+.img {
+  width: 70px;
+  height: 70px;
+  object-fit: cover;
 }

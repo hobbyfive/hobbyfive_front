@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { LoginModal } from '../components/LoginModal';
 import ClubList from './ClubList';
 import { SignUpModal } from '../components/SignUpModal';
+import hobbyfiveloggo from './high-five.png'
 
 import './Main.css'
 
@@ -27,6 +28,7 @@ const Main = () => {
       <div>
         {/* 타이틀 */}
         <div className='center_box'>
+        <img src={hobbyfiveloggo} alt='logo' className='img'/>
           <h1>HOBBYFIVE</h1>
         </div>
 
