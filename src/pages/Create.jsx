@@ -192,17 +192,17 @@ const Create = () => {
               </FormControl>
             </div>
 
-            <div class="form-check form-switch">
-              <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" />
-              <label class="form-check-label" for="flexSwitchCheckDefault">private</label>
+            <div className="form-check form-switch">
+              <input className="form-check-input" type="checkbox" id="flexSwitchCheckDefault" />
+              <label className="form-check-label" for="flexSwitchCheckDefault">private</label>
             </div>
 
           </div>
         </div>
 
         <div className="buttons">
-          <button type="button" class="btn btn-outline-success">만들기</button>
-          <button type="button" class="btn btn-outline-danger">취소</button>
+          <button type="button" className="btn btn-outline-success">만들기</button>
+          <button type="button" className="btn btn-outline-danger">취소</button>
         </div>
       </Box>
     </div>
