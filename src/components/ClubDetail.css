@@ -1,6 +1,5 @@
-
-.fontsizebigger{
-    font-size: 1.2rem !important;
+.fontsizebigger {
+  font-size: 1.2rem !important;
 }
 
 
@@ -89,4 +88,22 @@
   margin-top: 3vh;
   display: flex;
   justify-content: space-around;
+}
+
+.dblock {
+  display: block !important;
+}
+
+.timeArea {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 5vh;
+}
+
+.dmaxWidth {
+  max-width: 50%;
+}
+
+.dtitle {
+  text-align: center;
 }

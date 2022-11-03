@@ -155,3 +155,7 @@ header {
 .customWidth {
   width: 45%;
 }
+
+.cmargin {
+  margin-right: 2vh;
+}
