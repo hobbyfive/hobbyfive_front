@@ -54,5 +54,6 @@
   },
   "devDependencies": {
     "prettier": "^2.7.1"
-  }
+  },
+  "proxy": "http://34.236.154.248:8090"
 }

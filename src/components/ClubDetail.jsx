@@ -20,10 +20,10 @@ export default function ClubDetail({ closeClubModal, clubId }) {
 
   return (
     <div className='modal custom-modal fontsizebigger'>
-      <div className='modal-dialog'>
+      <div className='modal-dialog dmaxWidth'>
         <div className='modal-content'>
-          <div className="modal-header">
-            <div className="modal-title">모임제목(dummy)</div>
+          <div className="modal-header dblock">
+            <div className="modal-title dtitle">모임더미</div>
             <div className="timeArea">
               <div className="dGatheringDay">
                 <Stack direction="row" spacing={1}>
@@ -85,7 +85,7 @@ export default function ClubDetail({ closeClubModal, clubId }) {
           </div>
 
           <div className="modal-footer">
-            <button type="button" className='btn btn-primary'>참가신청 or 모집마감</button>
+            <button type="button" className='btn btn-primary'>참가신청</button>
             <button type="button" className='btn btn-secondary' onClick={closeClubModal}>닫기</button>
           </div>
 
