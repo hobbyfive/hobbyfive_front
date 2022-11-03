@@ -3,9 +3,10 @@ import ClubDetail from '../components/ClubDetail';
 
 import './ClubList.css'
 import FilterModal from './FilterModal';
+import {Link} from 'react-router-dom';
 
 const ClubList = ({selectMenu}) => {
-  const [clubList, setClubList] = useState([{title:"모임명1"}, {title:"모임명2"}, {title:"모임명3"}, {title:"모임명4"}]);
+  const [clubList, setClubList] = useState([{title:"모임명1모임명1모임명1모임명1모임명1모임명1모임명1모임명1모임명1모임명1모임명1모임명1모임명1모임명1모임명1모임명1모임명1모임명1모임명1모임명1모임명1"}, {title:"모임명2"}, {title:"모임명3"}, {title:"모임명4"}]);
   const [filterVisible, setFilterVisible] = useState(false);
   const [clubVisible, setClubVisible] = useState(false);
 
@@ -35,7 +36,7 @@ const ClubList = ({selectMenu}) => {
         <div>
 
           <div className='createClub'>
-            <a href="/create">모임 개설</a>
+            <Link to="/create" className='a-tag'>모임 개설</Link>
           </div>
 
           <div className='clublistGrid'>
@@ -43,9 +44,13 @@ const ClubList = ({selectMenu}) => {
               {filterVisible && <FilterModal closeFilterModal={closeFilterModal} />}
               <div className='breadcrumb btn btn-outline-secondary bg' onClick={closeFilterModal}>FILTER</div>
               <div className='filter_title'>Date</div>
-              <div className='filter_content'></div>
+              <div className='filter_content'>전체</div>
+              <div>------------------</div>
               <div className='filter_title'>Category</div>
+              <div className='filter_content'>전체</div>
+              <div>------------------</div>
               <div className='filter_title'>Location</div>
+              <div className='filter_content'>전체</div>
             </div>
             
             <div className='clubs'>
@@ -58,9 +63,9 @@ const ClubList = ({selectMenu}) => {
                         <span className="badge bg-info">모집중</span>
                         <span className="badge bg-secondary">운동</span>
                         <h4 className="custom-card-title">{club.title}</h4>
-                        <p className="card-text">정원 : 2/4</p>
-                        <p className="card-text">모임예정일 : 10/26</p>
-                        <p className="card-text">모집마감일 : ~까지</p>
+                        <p className="card-text">신청 인원 : 2/4</p>
+                        <p className="card-text">모임 예정일 : 10/26</p>
+                        <p className="card-text">모집 마감일 : ~까지</p>
                       </div>
                     </div>
                   ))
@@ -71,19 +76,19 @@ const ClubList = ({selectMenu}) => {
               
               <div className='page-wrap'>
                 <ul className="pagination pagination-sm">
-                  <li className="page-item"><a className="page-link" href="#none">&laquo;</a></li>
+                  <li className="page-item"><a className="page-link" href="#none">&#60;</a></li>
                   <li className="page-item active"><a className="page-link" href="#none">1</a></li>
                   <li className="page-item"><a className="page-link" href="#none">2</a></li>
                   <li className="page-item"><a className="page-link" href="#none">3</a></li>
                   <li className="page-item"><a className="page-link" href="#none">4</a></li>
                   <li className="page-item"><a className="page-link" href="#none">5</a></li>
-                  <li className="page-item"><a className="page-link" href="#none">&raquo;</a></li>
+                  <li className="page-item"><a className="page-link" href="#none">&#62;</a></li>
                 </ul>
               </div>
             </div>
           </div>
 
-          { selectMenu === 0 ? "all" : "part"}
+          { /* selectMenu === 0 ? "all" : "part" */ }
         </div>
 
     );

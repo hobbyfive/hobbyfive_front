@@ -1,5 +1,6 @@
 .right_box {
     text-align: right;
+    margin-right: 30px;
 }
 
 .left_box {
@@ -11,12 +12,10 @@
     text-align: center;
 }
 
-.login {
-    margin-right:10px;
-}
-
-.join {
-    margin-right: 30px;
+.a-tag {
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 1.1rem !important;
 }
 
 .wrap {
@@ -44,6 +43,7 @@
     text-align: center;
     display:inline-block;
     width: 50%;
+    cursor: pointer;
 }
 .tabs li.active {
     border-top: 2px solid gray;
@@ -52,7 +52,7 @@
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
     width: 50%;
-    background-color: rgb(248, 234, 255);
+    background-color: rgb(232, 238, 255);
 }
 
 .tabs li.inactive {
@@ -64,7 +64,7 @@
     border-right: 2px solid gray;
     border-bottom: 2px solid gray;
     margin-bottom: 20px;
-    background-color: rgb(248, 234, 255);
+    background-color: rgb(232, 238, 255);
 }
 
 .img {

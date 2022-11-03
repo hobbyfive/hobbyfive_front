@@ -36,8 +36,9 @@ const Main = () => {
         <div className='right_box'>
         {loginVisible && <LoginModal closeLoginModal={closeLoginModal} />}
         {SignUpVisible && <SignUpModal closeSignUpModal={closeSignUpModal} />}
-          <a className='login mycolor' onClick={closeLoginModal}>로그인</a>
-          <a className='signup' onClick={closeSignUpModal}>회원가입</a>
+          <a className='a-tag' onClick={closeLoginModal}>로그인</a>
+          <a> / </a>
+          <a className='a-tag' onClick={closeSignUpModal}>회원가입</a>
         </div>
 
         {/* 메인 탭 */}
