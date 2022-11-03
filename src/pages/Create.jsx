@@ -17,6 +17,9 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import axios from 'axios';
 
+import { Link } from 'react-router-dom';
+import { NoBackpackSharp } from '@mui/icons-material';
+
 const StyledButton = styled(Button)({
   border: '1px solid',
   fontSize: '18px',
@@ -168,8 +171,8 @@ const Create = () => {
               </div>
             </div>
             <div className="buttons">
-              <button type="button" className="btn btn-primary">만들기</button>
-              <button type="button" className="btn btn-secondary">취소</button>
+              <button type="button" className="btn btn-primary cmargin">개설하기</button>
+              <Link to="/" type="button" className="btn btn-secondary" >메인화면</Link>
             </div>
           </div>
         </div>
