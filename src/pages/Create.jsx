@@ -64,19 +64,19 @@ const Create = () => {
     setCategory(event.target.value);
   };
 
-  // useEffect(() => {
-  //   axios({
-  //     method: "get",
-  //     url: "/emp/emplist.do", // 필터링 조건 , data: ['',''] ?.
-  //   })
-  //     .then((res) => {
-  //       console.log(res);
-  //       console.log(res.data);
-  //     })
-  //     .catch((error) => {
-  //       throw new Error(error);
-  //     });
-  // }, []);
+  useEffect(() => {
+    axios({
+      method: "get",
+      url: "http://34.236.154.248:8090/api/hello", // 필터링 조건 , data: ['',''] ?.
+    })
+      .then((res) => {
+        console.log(res);
+        console.log(res.data);
+      })
+      .catch((error) => {
+        throw new Error(error);
+      });
+  }, []);
 
   return (
     <div>
