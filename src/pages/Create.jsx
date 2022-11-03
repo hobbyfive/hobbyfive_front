@@ -35,6 +35,15 @@ const StyledButton = styled(Button)({
 });
 
 const Create = () => {
+  const [title, setTitle] = useState('')
+  const onTitleChange = (event) => {
+    setTitle(event.target.value);
+  };
+  const [content, setContent] = useState('')
+  const onContentChange = (event) => {
+    setContent(event.target.value);
+  };
+
   const [gatheringDay, setGatheringDay] = useState(
     dayjs('2022-11-04T18:00:01'),
   );
@@ -98,7 +107,7 @@ const Create = () => {
           <div>
             <div className="title">
               <legend>Title</legend>
-              <input type="text" class="form-control" placeholder="제목을 입력해 주세요." id="inputDefault" />
+              <input value={title} onChange={onTitleChange} type="text" class="form-control" placeholder="제목을 입력해 주세요." id="inputDefault" />
             </div>
 
 
@@ -112,7 +121,7 @@ const Create = () => {
 
             <div className="textContent">
               <legend>Contents</legend>
-              <textarea class="form-control form-control-lg" type="text" placeholder="내용을 입력해 주세요." id="inputLarge" rows="6" />
+              <textarea value={content} onChange={onContentChange} class="form-control form-control-lg" type="text" placeholder="내용을 입력해 주세요." id="inputLarge" rows="6" />
             </div>
             <div className='inputf'>
               <label for="formFile" class="form-label">Image</label>
@@ -162,7 +171,14 @@ const Create = () => {
               <div className='inputGroup'>
                 <div class="form-group customWidth">
                   <label class="col-form-label col-form-label-lg mt-4" for="inputLarge">지역</label>
-                  <input class="form-control form-control-lg" type="text" placeholder="" id="inputLarge" />
+                  <select class="form-select" id="exampleSelect1">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                  </select>
+
                 </div>
                 <div class="form-group customWidth">
                   <label class="col-form-label col-form-label-lg mt-4" for="inputLarge">카테고리</label>
