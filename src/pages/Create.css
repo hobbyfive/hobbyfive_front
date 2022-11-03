@@ -113,6 +113,8 @@ header {
 .buttons {
   display: flex;
   justify-content: center;
+  margin-top: 10vh;
+  margin-bottom: 3vh;
 }
 
 .mr3 {
@@ -143,4 +145,13 @@ header {
   margin-bottom: 2vh;
   display: flex;
   align-items: center;
+}
+
+.inputGroup {
+  display: flex;
+  justify-content: space-around;
+}
+
+.customWidth {
+  width: 45%;
 }

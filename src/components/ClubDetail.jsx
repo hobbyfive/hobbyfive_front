@@ -9,7 +9,7 @@ import GroupsIcon from '@mui/icons-material/Groups';
 
 
 export default function ClubDetail({ closeClubModal, clubId }) {
-  
+
 
   const [region, setRegion] = useState(['지역1(dummy)', '지역2(dummy)']);
   const [category, setCategory] = useState([
