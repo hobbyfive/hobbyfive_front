@@ -1,10 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
 import './Create.css';
+import './Main.css'
+import hobbyfiveloggo from './high-five.png'
 
-import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-import InputAdornment from '@mui/material/InputAdornment';
-import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
@@ -81,96 +80,192 @@ const Create = () => {
   return (
     <div>
       <div className='center_box'>
+        <img src={hobbyfiveloggo} alt='logo' className='img' />
         <h1>HOBBYFIVE</h1>
       </div>
-      <h1 className="pageTitle">모임 만들기</h1>
-      <Box
-        sx={{
-          margin: '1vh auto',
-          width: '65vw',
-          backgroundColor: 'white',
-          borderRadius: '15px',
-          border: '1px solid #EEEFF2',
-        }}
-      >
-        <div className="title">
-          <legend>Title</legend>
-          <input type="text" class="form-control" placeholder="제목을 입력해 주세요." id="inputDefault" />
+
+      <div className="wrap">
+        <div className="menuBar">
+          <ul className="tabs">
+            <li className='active'>모임 만들기</li>
+            <li className='inactive'></li>
+          </ul>
         </div>
+        <div className="contents">
+          <div>
+            <div className="title">
+              <legend>Title</legend>
+              <input type="text" class="form-control" placeholder="제목을 입력해 주세요." id="inputDefault" />
+            </div>
 
 
-        {fileImage && (
-          <div className="imageBox">
-            <img alt="sample" src={fileImage} className="uploadedImage" />
-          </div>
-        )}
+            {fileImage && (
+              <div className="imageBox">
+                <img alt="sample" src={fileImage} className="uploadedImage" />
+              </div>
+            )}
 
 
-        <div className="textContent">
-          <legend>Contents</legend>
-          <textarea class="form-control form-control-lg" type="text" placeholder="내용을 입력해 주세요." id="inputLarge" rows="6" />
-        </div>
-        <div className='inputf'>
-          <label for="formFile" class="form-label">Image</label>
-          <input class="form-control" type="file" accept="image/*" id="formFile" onChange={handleChange} />
-        </div>
 
-        <div className="timeBox">
-          <div className="gatheringDay">
-            <div className="gatheringDayText inlineBlock">모임예정일</div>
-            {/* <h3 className="mr3">모임 예정일</h3> */}
-            <div className="gatheringDayContent inlineBlock">
-              <LocalizationProvider dateAdapter={AdapterDayjs}>
-                <DateTimePicker
-                  value={gatheringDay}
-                  onChange={handleGatheringDay}
-                  renderInput={params => <TextField {...params} />}
-                />
-              </LocalizationProvider>
+            <div className="textContent">
+              <legend>Contents</legend>
+              <textarea class="form-control form-control-lg" type="text" placeholder="내용을 입력해 주세요." id="inputLarge" rows="6" />
+            </div>
+            <div className='inputf'>
+              <label for="formFile" class="form-label">Image</label>
+              <input class="form-control" type="file" accept="image/*" id="formFile" onChange={handleChange} />
+            </div>
+
+            <div className="timeBox">
+              <div className="gatheringDay">
+                <div className="gatheringDayText inlineBlock">모임예정일</div>
+                {/* <h3 className="mr3">모임 예정일</h3> */}
+                <div className="gatheringDayContent inlineBlock">
+                  <LocalizationProvider dateAdapter={AdapterDayjs}>
+                    <DateTimePicker
+                      value={gatheringDay}
+                      onChange={handleGatheringDay}
+                      renderInput={params => <TextField {...params} />}
+                    />
+                  </LocalizationProvider>
+                </div>
+              </div>
+              <div className="deadLine ">
+                <div className="deadLineText inlineBlock">모집마감일</div>
+                {/* <h3 className="mr3">모집 마감일</h3> */}
+                <div className="deadLineContent inlineBlock">
+                  <LocalizationProvider dateAdapter={AdapterDayjs}>
+                    <DateTimePicker
+                      value={deadLine}
+                      onChange={handleDeadLine}
+                      renderInput={params => <TextField {...params} />}
+                    />
+                  </LocalizationProvider>
+                </div>
+              </div>
+            </div>
+            <div className="options">
+              <div className='marbo'>
+                <div className='optionlable'>최소인원</div>
+                <div className='optioninput'>
+                  <TextField
+                    sx={{ width: '50%' }}
+                    id="outlined-basic"
+                    type="number"
+                    // label="최소인원"
+                    variant="standard"
+                  />
+                </div>
+              </div>
+              <div className='marbo'>
+                <div className='optionlable'>최대인원</div>
+                <div className='optioninput'>
+                  <TextField
+                    sx={{ width: '50%' }}
+                    id="outlined-basic"
+                    type="number"
+                    // label="최대인원"
+                    variant="standard"
+                  />
+                </div>
+              </div>
+              <div className='marbo'>
+                <div className='optionlable'></div>
+                <div className='optionlable'>지역</div>
+                <div className='optioninput'>
+                  <FormControl sx={{ width: '50%' }}>
+                    <InputLabel id="demo-simple-select-label"></InputLabel>
+                    <Select
+                      labelId="demo-simple-select-label"
+                      id="demo-simple-select"
+                      value={region}
+                      label="region"
+                      onChange={handleRegion}
+                      variant="standard"
+                    >
+                      <MenuItem value={'지역1'}>지역1</MenuItem>
+                      <MenuItem value={'지역2'}>지역2</MenuItem>
+                      <MenuItem value={'지역3'}>지역3</MenuItem>
+                    </Select>
+                  </FormControl>
+                </div></div>
+
+              <div className='marbo'>
+
+                <div className='optionlable'>카테고리</div>
+                <div className='optioninput'>
+                  <FormControl sx={{ width: '50%' }}>
+                    <InputLabel id="demo-simple-select-label"></InputLabel>
+                    <Select
+                      labelId="demo-simple-select-label"
+                      id="demo-simple-select"
+                      value={category}
+                      label="category"
+                      onChange={handleCategory}
+                      variant="standard"
+                    >
+                      <MenuItem value={'범주1'}>범주1</MenuItem>
+                      <MenuItem value={'범주2'}>범주2</MenuItem>
+                      <MenuItem value={'범주3'}>범주3</MenuItem>
+                    </Select>
+                  </FormControl>
+                </div>
+
+                <div className="form-check form-switch">
+                  <input className="form-check-input" type="checkbox" id="flexSwitchCheckDefault" />
+                  <label className="form-check-label" for="flexSwitchCheckDefault">private</label>
+                </div>
+
+              </div>
+            </div>
+
+            <div className="buttons">
+              <button type="button" className="btn btn-primary">만들기</button>
+              <button type="button" className="btn btn-secondary">취소</button>
             </div>
           </div>
-          <div className="deadLine ">
-            <div className="deadLineText inlineBlock">모집마감일</div>
-            {/* <h3 className="mr3">모집 마감일</h3> */}
-            <div className="deadLineContent inlineBlock">
-              <LocalizationProvider dateAdapter={AdapterDayjs}>
-                <DateTimePicker
-                  value={deadLine}
-                  onChange={handleDeadLine}
-                  renderInput={params => <TextField {...params} />}
-                />
-              </LocalizationProvider>
-            </div>
+        </div>
+        <div className="deadLine ">
+          <div className="deadLineText inlineBlock">모집마감일</div>
+          {/* <h3 className="mr3">모집 마감일</h3> */}
+          <div className="deadLineContent inlineBlock">
+            <LocalizationProvider dateAdapter={AdapterDayjs}>
+              <DateTimePicker
+                value={deadLine}
+                onChange={handleDeadLine}
+                renderInput={params => <TextField {...params} />}
+              />
+            </LocalizationProvider>
           </div>
         </div>
-        <div className="options">
-          <div className='inputGroup'>
-            <div class="form-group customWidth">
-              <label class="col-form-label col-form-label-lg mt-4" for="inputLarge">최소 인원</label>
-              <input class="form-control form-control-lg" type="text" placeholder="모임의 최소인원을 입력해 주세요" id="inputLarge" />
-            </div>
-            <div class="form-group customWidth">
-              <label class="col-form-label col-form-label-lg mt-4" for="inputLarge">최대 인원</label>
-              <input class="form-control form-control-lg" type="text" placeholder="모임의 최대인원을 입력해 주세요" id="inputLarge" />
-            </div>
+      </div>
+      <div className="options">
+        <div className='inputGroup'>
+          <div class="form-group customWidth">
+            <label class="col-form-label col-form-label-lg mt-4" for="inputLarge">최소 인원</label>
+            <input class="form-control form-control-lg" type="text" placeholder="모임의 최소인원을 입력해 주세요" id="inputLarge" />
           </div>
-          <div className='inputGroup'>
-            <div class="form-group customWidth">
-              <label class="col-form-label col-form-label-lg mt-4" for="inputLarge">지역</label>
-              <input class="form-control form-control-lg" type="text" placeholder="" id="inputLarge" />
-            </div>
-            <div class="form-group customWidth">
-              <label class="col-form-label col-form-label-lg mt-4" for="inputLarge">카테고리</label>
-              <input class="form-control form-control-lg" type="text" placeholder="" id="inputLarge" />
-            </div>
+          <div class="form-group customWidth">
+            <label class="col-form-label col-form-label-lg mt-4" for="inputLarge">최대 인원</label>
+            <input class="form-control form-control-lg" type="text" placeholder="모임의 최대인원을 입력해 주세요" id="inputLarge" />
           </div>
         </div>
+        <div className='inputGroup'>
+          <div class="form-group customWidth">
+            <label class="col-form-label col-form-label-lg mt-4" for="inputLarge">지역</label>
+            <input class="form-control form-control-lg" type="text" placeholder="" id="inputLarge" />
+          </div>
+          <div class="form-group customWidth">
+            <label class="col-form-label col-form-label-lg mt-4" for="inputLarge">카테고리</label>
+            <input class="form-control form-control-lg" type="text" placeholder="" id="inputLarge" />
+          </div>
+        </div>
+      </div>
 
-        <div className="buttons">
-          <button type="button" className="btn btn-outline-success">만들기</button>
-          <button type="button" className="btn btn-outline-danger">취소</button>
-        </div>
-      </Box>
+      <div className="buttons">
+        <button type="button" className="btn btn-outline-success">만들기</button>
+        <button type="button" className="btn btn-outline-danger">취소</button>
+      </div>
     </div>
   );
 };

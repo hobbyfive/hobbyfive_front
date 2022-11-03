@@ -75,7 +75,6 @@ header {
 }
 
 .title {
-  margin: 1vh;
   padding: 1vh;
 }
 
@@ -112,12 +111,8 @@ header {
 }
 
 .buttons {
-  margin: 6vh 3vh 4vh 3vh;
-}
-
-.buttons {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
 }
 
 .mr3 {

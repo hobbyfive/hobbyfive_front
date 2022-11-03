@@ -1,10 +1,16 @@
+
+.fontsizebigger{
+    font-size: 1.2rem !important;
+}
+
+
 .dTitleArea {
   display: flex;
   justify-content: space-between;
 }
 
 .dClubTitle {
-  font-size: 4vh;
+  font-size: 2rem !important;
   display: flex;
   justify-content: center;
   align-items: center;
