@@ -1,16 +1,16 @@
 import React, {useState} from "react"; 
 import '../pages/Modal.css'
 import './SignUp.css'
-import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
-const SignUpModal = ({closeSignUpModal}) => {
+const SignUpModal = ({closeSignUpModal, getSignUpStatus}) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("")
   const [confirmPassword, setConfirmPassword] = useState("")
   const [name, setName] = useState("")
   const [nickname, setNickName] = useState("")
   const [company, setCompany] = useState("")
-  const navigate = useNavigate();
+  const [gender, setGender] = useState("M")
 
 
   const onEmailHandler = (event) => {
@@ -37,15 +37,36 @@ const SignUpModal = ({closeSignUpModal}) => {
     setCompany(event.currentTarget.value)
   }
 
-  const onSubmit = () => {
+  const onGenderHandler = (event) => {
+    setGender(event.currentTarget.value)
+  }
+
+  const SignUp = () => {
     if(password !== confirmPassword) {
       return alert('비밀번호와 비밀번호확인은 같아야 합니다.')
     } else {
-      navigate("/");
+      console.log(email, password, name, nickname, gender, company);
+      axios.post("http://34.236.154.248:8090/api/signup", {
+        email,
+        password,
+        name,
+        nickname,
+        gender,
+        company,
+      })
+        .then((res) => {
+          console.log(res.data);
+          getSignUpStatus(true);
+          closeSignUpModal();
+        })
+        .catch((error) => {
+          console.log(error);
+          throw new Error(error);
+        });
+        
     }
   }
-
- 
+  
   return (
     <div className="modal custom-modal">
       <div className="modal-dialog" role="document">
@@ -63,17 +84,17 @@ const SignUpModal = ({closeSignUpModal}) => {
               <div className="form-floating mb-3"><input name="nickname" type="text" placeholder="NickName" value={nickname} onChange={onNickNameHandler} className="form-control"/><label for="floatingInput">닉네임</label></div>
               <div className="form-floating mb-3"><input name="company" type="text" placeholder="Company" value={company} onChange={onCompanyHandler} className="form-control"/><label for="floatingInput">회사명</label></div>
               <div className="form-check">
-                <input id="gender_man" type="radio" name="gender" className="form-check-input"/><label className="form-check-label" for="gender_man">
+                <input id="gender_man" type="radio" name="gender" className="form-check-input" value="M" onChange={onGenderHandler}/><label className="form-check-label" for="gender_man">
                   저는 남자입니다.</label></div>
               <div className="form-check">
-                <input id="gender_woman" type="radio" name="gender" className="form-check-input"/><label className="form-check-label" for="gender_man">
+                <input id="gender_woman" type="radio" name="gender" className="form-check-input" value="F" onChange={onGenderHandler}/><label className="form-check-label" for="gender_woman">
                   저는 여자입니다.</label>
               </div>
           </form>
         </div>
               </div>
               <div className="modal-footer">
-                <button type="button" className="btn btn-primary" data-bs-dismiss="modal" onClick={() => onSubmit()}>가입하기</button>
+                <button type="button" className="btn btn-primary" data-bs-dismiss="modal" onClick={() => SignUp()}>가입하기</button>
                 <button type="button" className="btn btn-secondary" data-bs-dismiss="modal" onClick={closeSignUpModal}>나중에</button>
               </div>
             </div>

@@ -12,6 +12,7 @@ const Main = (props) => {
   const[loginVisible, setLoginVisible] = useState(false);
   const[SignUpVisible, setSignUpVisible] = useState(false);
   const[loginStatus, setLoginStatus] = useState(false);
+  const[signupStatus, setSignupStatus] = useState(false);
 
   const closeLoginModal = () => {
     setLoginVisible(!loginVisible);
@@ -29,6 +30,10 @@ const Main = (props) => {
     setLoginStatus(loginStatus);
   }
 
+  const getSignUpStatus = (signupStatus) => {
+    setSignupStatus(signupStatus);
+  }
+
     return (
       <div>
         {/* 타이틀 */}
@@ -40,7 +45,7 @@ const Main = (props) => {
         {/* 로그인, 회원가입 */}
         <div className='right_box'>
         {loginVisible && <LoginModal closeLoginModal={closeLoginModal} getLoginStatus={getLoginStatus} />}
-        {SignUpVisible && <SignUpModal closeSignUpModal={closeSignUpModal} />}
+        {SignUpVisible && <SignUpModal closeSignUpModal={closeSignUpModal} getSignUpStatus={getSignUpStatus} />}
         {loginStatus ?
         <div>
             <a className='a-tag' onClick={closeLoginModal}>로그아웃</a>
