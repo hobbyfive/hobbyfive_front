@@ -58,6 +58,7 @@ const SignUpModal = ({closeSignUpModal, getSignUpStatus}) => {
           console.log(res.data);
           getSignUpStatus(true);
           closeSignUpModal();
+          return alert('회원가입이 완료되었습니다.')
         })
         .catch((error) => {
           console.log(error);
