@@ -24,7 +24,6 @@ export default function ClubDetail({ closeClubModal, clubId }) {
       url: `http://34.236.154.248:8090/api/club/clubInfo/${clubId}`,
     })
       .then(res => {
-        console.log(res.data.content);
         setClubName(res.data.name);
         let mt = res.data.meetTime;
         let lmeetTime = `${mt.slice(0, 4)}년 ${mt.slice(5, 7)}월 ${mt.slice(
