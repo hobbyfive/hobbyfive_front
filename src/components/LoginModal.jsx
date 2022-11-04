@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react"; 
-import '../pages/Modal.css'
-import axios from "axios";
+import React, { useEffect, useState } from 'react';
+import '../pages/Modal.css';
+import axios from 'axios';
 
 const LoginModal = ({ closeLoginModal, getLoginStatus }) => {
   const [inputEmail, setEmail] = useState('');

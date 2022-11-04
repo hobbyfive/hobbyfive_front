@@ -19,6 +19,8 @@ export default function ClubDetail({ closeClubModal, clubId }) {
   const [category, setCategory] = useState('');
   const [imgUrl, setImgUrl] = useState('');
 
+  const [state, setState] = useState('참가신청');
+
   const handleJoin = () => {
     axios
       .post(
@@ -30,6 +32,9 @@ export default function ClubDetail({ closeClubModal, clubId }) {
       )
       .then(res => {
         console.log(res.data);
+        alert('참가신청 완료되었습니다.');
+        setCurrNum(currNum + 1);
+        setState('신청완료');
       })
       .catch(error => {
         throw new Error(error);
@@ -65,7 +70,7 @@ export default function ClubDetail({ closeClubModal, clubId }) {
       .catch(error => {
         throw new Error(error);
       });
-  }, []);
+  }, [currNum]);
 
   return (
     <div className="modal custom-modal fontsizebigger">
@@ -122,7 +127,7 @@ export default function ClubDetail({ closeClubModal, clubId }) {
               <textarea
                 class="form-control"
                 id="exampleTextarea"
-                rows="8"
+                rows="5"
                 disabled
                 value={content}
               ></textarea>
@@ -135,7 +140,7 @@ export default function ClubDetail({ closeClubModal, clubId }) {
               className="btn btn-primary"
               onClick={handleJoin}
             >
-              참가신청
+              {state}
             </button>
             <button
               type="button"
