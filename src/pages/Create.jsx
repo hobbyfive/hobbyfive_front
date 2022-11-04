@@ -110,7 +110,6 @@ const Create = () => {
           expiryTime: new Date(deadLine),
           district: region,
           category: category,
-          company: '삼성',
         },
         {
           headers: { Authorization: `Bearer ${localStorage.getItem('JWT')}` },
