@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import './Create.css';
-import './Main.css'
-import hobbyfiveloggo from './high-five.png'
+import './Main.css';
+import hobbyfiveloggo from './high-five.png';
 
 import TextField from '@mui/material/TextField';
 import MenuItem from '@mui/material/MenuItem';
@@ -17,7 +17,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import axios from 'axios';
 
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { NoBackpackSharp } from '@mui/icons-material';
 
 const StyledButton = styled(Button)({
@@ -66,41 +66,106 @@ const Create = () => {
     setCategory(event.target.value);
   };
 
-  useEffect(() => {
-    axios({
-      method: "get",
-      url: "http://34.236.154.248:8090/api/hello", // 필터링 조건 , data: ['',''] ?.
-    })
-      .then((res) => {
-        console.log(res);
+  const [minNum, setMinNum] = useState('');
+  const handleMinNum = event => {
+    setMinNum(event.target.value);
+  };
+  const [maxNum, setMaxNum] = useState('');
+  const handleMaxNum = event => {
+    setMaxNum(event.target.value);
+  };
+  const [clubTitle, setClubTitle] = useState('');
+  const handleClubTitle = event => {
+    setClubTitle(event.target.value);
+  };
+  const [clubContent, setClubContent] = useState('');
+  const handleClubContent = event => {
+    setClubContent(event.target.value);
+  };
+  const navigate = useNavigate();
+  const onNavi = () => {
+    navigate(`/`);
+  };
+
+  const createClub = () => {
+    // console.log(clubTitle);
+    // console.log(clubContent);
+    // console.log(gatheringDay);
+    // console.log(deadLine);
+    // console.log(new Date(deadLine));
+    // console.log(minNum);
+    // console.log(maxNum);
+    // console.log(region);
+    // console.log(category);
+    axios
+      .post(
+        'http://34.236.154.248:8090/api/club/signup',
+        {
+          name: clubTitle,
+          content: clubContent,
+
+          minNum: minNum,
+          maxNum: maxNum,
+          meetTime: new Date(gatheringDay),
+          expiryTime: new Date(deadLine),
+          district: region,
+          category: category,
+          company: '삼성',
+        },
+        {
+          headers: { Authorization: `Bearer ${localStorage.getItem('JWT')}` },
+        },
+      )
+      .then(res => {
         console.log(res.data);
+        onNavi();
       })
-      .catch((error) => {
+      .catch(error => {
         throw new Error(error);
       });
+  };
+
+  useEffect(() => {
+    // axios({
+    //   method: 'get',
+    //   url: 'http://34.236.154.248:8090/api/hello',
+    // })
+    //   .then(res => {
+    //     console.log(res);
+    //     console.log(res.data);
+    //   })
+    //   .catch(error => {
+    //     throw new Error(error);
+    //   });
   }, []);
 
   return (
     <div>
-      <div className='center_box'>
-        <img src={hobbyfiveloggo} alt='logo' className='img' />
+      <div className="center_box">
+        <img src={hobbyfiveloggo} alt="logo" className="img" />
         <h1>HOBBYFIVE</h1>
       </div>
 
       <div className="wrap">
         <div className="menuBar">
           <ul className="tabs">
-            <li className='active'>모임 만들기</li>
-            <li className='inactive'></li>
+            <li className="active">모임 만들기</li>
+            <li className="inactive"></li>
           </ul>
         </div>
         <div className="contents">
           <div>
             <div className="title">
               <legend>Title</legend>
-              <input type="text" class="form-control" placeholder="제목을 입력해 주세요." id="inputDefault" />
+              <input
+                value={clubTitle}
+                onChange={handleClubTitle}
+                type="text"
+                class="form-control"
+                placeholder="제목을 입력해 주세요."
+                id="inputDefault"
+              />
             </div>
-
 
             {fileImage && (
               <div className="imageBox">
@@ -108,15 +173,29 @@ const Create = () => {
               </div>
             )}
 
-
-
             <div className="textContent">
               <legend>Contents</legend>
-              <textarea class="form-control form-control-lg" type="text" placeholder="내용을 입력해 주세요." id="inputLarge" rows="6" />
+              <textarea
+                value={clubContent}
+                onChange={handleClubContent}
+                class="form-control form-control-lg"
+                type="text"
+                placeholder="내용을 입력해 주세요."
+                id="inputLarge"
+                rows="6"
+              />
             </div>
-            <div className='inputf'>
-              <label for="formFile" class="form-label">Image</label>
-              <input class="form-control" type="file" accept="image/*" id="formFile" onChange={handleChange} />
+            <div className="inputf">
+              <label for="formFile" class="form-label">
+                Image
+              </label>
+              <input
+                class="form-control"
+                type="file"
+                accept="image/*"
+                id="formFile"
+                onChange={handleChange}
+              />
             </div>
 
             <div className="timeBox">
@@ -149,30 +228,86 @@ const Create = () => {
             </div>
 
             <div className="options">
-              <div className='inputGroup'>
+              <div className="inputGroup">
                 <div class="form-group customWidth">
-                  <label class="col-form-label col-form-label-lg mt-4" for="inputLarge">최소 인원</label>
-                  <input class="form-control form-control-lg" type="text" placeholder="모임의 최소인원을 입력해 주세요" id="inputLarge" />
+                  <label
+                    class="col-form-label col-form-label-lg mt-4"
+                    for="inputLarge"
+                  >
+                    최소 인원
+                  </label>
+                  <input
+                    value={minNum}
+                    onChange={handleMinNum}
+                    class="form-control form-control-lg"
+                    type="number"
+                    placeholder="모임의 최소인원을 입력해 주세요"
+                    id="inputLarge"
+                  />
                 </div>
                 <div class="form-group customWidth">
-                  <label class="col-form-label col-form-label-lg mt-4" for="inputLarge">최대 인원</label>
-                  <input class="form-control form-control-lg" type="text" placeholder="모임의 최대인원을 입력해 주세요" id="inputLarge" />
+                  <label
+                    class="col-form-label col-form-label-lg mt-4"
+                    for="inputLarge"
+                  >
+                    최대 인원
+                  </label>
+                  <input
+                    value={maxNum}
+                    onChange={handleMaxNum}
+                    class="form-control form-control-lg"
+                    type="number"
+                    placeholder="모임의 최대인원을 입력해 주세요"
+                    id="inputLarge"
+                  />
                 </div>
               </div>
-              <div className='inputGroup'>
+              <div className="inputGroup">
                 <div class="form-group customWidth">
-                  <label class="col-form-label col-form-label-lg mt-4" for="inputLarge">지역</label>
-                  <input class="form-control form-control-lg" type="text" placeholder="" id="inputLarge" />
+                  <label
+                    class="col-form-label col-form-label-lg mt-4"
+                    for="inputLarge"
+                  >
+                    지역
+                  </label>
+                  <input
+                    value={region}
+                    onChange={handleRegion}
+                    class="form-control form-control-lg"
+                    type="text"
+                    placeholder=""
+                    id="inputLarge"
+                  />
                 </div>
                 <div class="form-group customWidth">
-                  <label class="col-form-label col-form-label-lg mt-4" for="inputLarge">카테고리</label>
-                  <input class="form-control form-control-lg" type="text" placeholder="" id="inputLarge" />
+                  <label
+                    class="col-form-label col-form-label-lg mt-4"
+                    for="inputLarge"
+                  >
+                    카테고리
+                  </label>
+                  <input
+                    value={category}
+                    onChange={handleCategory}
+                    class="form-control form-control-lg"
+                    type="text"
+                    placeholder=""
+                    id="inputLarge"
+                  />
                 </div>
               </div>
             </div>
             <div className="buttons">
-              <button type="button" className="btn btn-primary cmargin">개설하기</button>
-              <Link to="/" type="button" className="btn btn-secondary" >메인화면</Link>
+              <button
+                type="button"
+                className="btn btn-primary cmargin"
+                onClick={createClub}
+              >
+                개설하기
+              </button>
+              <Link to="/" type="button" className="btn btn-secondary">
+                메인화면
+              </Link>
             </div>
           </div>
         </div>
