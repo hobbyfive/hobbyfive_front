@@ -6,11 +6,12 @@ import hobbyfiveloggo from './high-five.png'
 
 import './Main.css'
 
-const Main = () => {
+const Main = (props) => {
 
   const[menu, setMenu] = useState(0);
   const[loginVisible, setLoginVisible] = useState(false);
   const[SignUpVisible, setSignUpVisible] = useState(false);
+  const[loginStatus, setLoginStatus] = useState(false);
 
   const closeLoginModal = () => {
     setLoginVisible(!loginVisible);
@@ -23,6 +24,10 @@ const Main = () => {
   const changeMenu = (menuIndex) =>{
     setMenu(menuIndex);
   }
+  
+  const getLoginStatus = (loginStatus) => {
+    setLoginStatus(loginStatus);
+  }
 
     return (
       <div>
@@ -34,11 +39,20 @@ const Main = () => {
 
         {/* 로그인, 회원가입 */}
         <div className='right_box'>
-        {loginVisible && <LoginModal closeLoginModal={closeLoginModal} />}
+        {loginVisible && <LoginModal closeLoginModal={closeLoginModal} getLoginStatus={getLoginStatus} />}
         {SignUpVisible && <SignUpModal closeSignUpModal={closeSignUpModal} />}
-          <a className='a-tag' onClick={closeLoginModal}>로그인</a>
-          <a> / </a>
-          <a className='a-tag' onClick={closeSignUpModal}>회원가입</a>
+        {loginStatus ?
+        <div>
+            <a className='a-tag' onClick={closeLoginModal}>로그아웃</a>
+            <a> / </a>
+            <a className='a-tag' onClick={closeSignUpModal}>마이페이지</a> </div>
+            : 
+            <div>
+            <a className='a-tag' onClick={closeLoginModal}>로그인</a>
+            <a> / </a>
+            <a className='a-tag' onClick={closeSignUpModal}>회원가입</a> </div>}
+          
+          
         </div>
 
         {/* 메인 탭 */}

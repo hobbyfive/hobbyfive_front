@@ -3,7 +3,7 @@ import { requestLogin } from "./Auth";
 import '../pages/Modal.css'
 import axios from "axios";
 
-const LoginModal = ({closeLoginModal, loginSuccess}) => {
+const LoginModal = ({closeLoginModal, getLoginStatus}) => {
   const [inputEmail, setEmail] = useState("");
   const [inputPasswd, setPasswd] = useState("");
 
@@ -23,14 +23,13 @@ const LoginModal = ({closeLoginModal, loginSuccess}) => {
       })
         .then((res) => {
           console.log(res.data);
+          getLoginStatus(true);
           closeLoginModal();
-          loginSuccess = true;
         })
         .catch((error) => {
           console.log("데이터를 확인해주세용");
           throw new Error(error);
         });
-
         
   }
  
