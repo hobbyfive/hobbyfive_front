@@ -17,6 +17,24 @@ export default function ClubDetail({ closeClubModal, clubId }) {
 
   const [region, setRegion] = useState('');
   const [category, setCategory] = useState('');
+  const [imgUrl, setImgUrl] = useState('');
+
+  const handleJoin = () => {
+    axios
+      .post(
+        `http://34.236.154.248:8090/api/clubmember/post/${clubId}`,
+        {},
+        {
+          headers: { Authorization: `Bearer ${localStorage.getItem('JWT')}` },
+        },
+      )
+      .then(res => {
+        console.log(res.data);
+      })
+      .catch(error => {
+        throw new Error(error);
+      });
+  };
 
   useEffect(() => {
     axios({
@@ -42,6 +60,7 @@ export default function ClubDetail({ closeClubModal, clubId }) {
         setMaxNum(res.data.maxNum);
         setCurrNum(res.data.currNum);
         setContent(res.data.content);
+        setImgUrl(res.data.imageUrl);
       })
       .catch(error => {
         throw new Error(error);
@@ -97,11 +116,7 @@ export default function ClubDetail({ closeClubModal, clubId }) {
               </div>
             </div>
             <div className="dImageBox">
-              <img
-                src="https://i.picsum.photos/id/377/1000/1000.jpg?hmac=X5DlFTiYUTtO6JBLOBmUOMPUAgvC8BefyGtLHNAmOWk"
-                alt=""
-                className="dImage"
-              />
+              <img src={imgUrl} alt="" className="dImage" />
             </div>
             <div className="dTextContent">
               <textarea
@@ -115,7 +130,11 @@ export default function ClubDetail({ closeClubModal, clubId }) {
           </div>
 
           <div className="modal-footer">
-            <button type="button" className="btn btn-primary">
+            <button
+              type="button"
+              className="btn btn-primary"
+              onClick={handleJoin}
+            >
               참가신청
             </button>
             <button
