@@ -6,7 +6,7 @@ import FilterModal from './FilterModal';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
 
-const ClubList = ({selectMenu}) => {
+const ClubList = ({selectMenu, userId}) => {
   const [clubList, setClubList] = useState([]);
   const [filterVisible, setFilterVisible] = useState(false);
   const [clubVisible, setClubVisible] = useState(false);
@@ -23,7 +23,9 @@ const ClubList = ({selectMenu}) => {
 
   
   
-  const AllClub = () => {
+  const AllClub = (selectMenu) => {
+    console.log(selectMenu); 
+    console.log("전체선택함");
     useEffect(() => {
       axios.get("http://34.236.154.248:8090/api/club/allClub")
         .then((res) => {
@@ -33,29 +35,36 @@ const ClubList = ({selectMenu}) => {
         .catch((error) => {
           throw new Error(error);
         });
-    }, []);
+    }, [clubList]);
     
   }
 
-  const CompanyClub = () => {
+
+  const CompanyClub = (selectMenu, userId) => {
+    console.log("회사선택함");
+    console.log(selectMenu);
     useEffect(() => {
-      axios.get(`http://34.236.154.248:8090/api/club/selectClubByCompanyId/${8}`)
+      axios.get(`http://34.236.154.248:8090/api/club/selectClubByCompanyId/${userId}`)
         .then((res) => {
-          console.log("회사" + res.data);
           setClubList(res.data);
+          console.log(res.data);
         })
         .catch((error) => {
           throw new Error(error);
         });
-    }, []);
+    }, [clubList]);
     
+  }
+
+  if (selectMenu == 0) {
+    AllClub(selectMenu);
+  } else {
+    CompanyClub(selectMenu, userId);
   }
   
 
     return (
         <div>
-
-          { selectMenu === 0 ? AllClub() : CompanyClub() }
 
           <div className='createClub'>
             <Link to="/create" className='a-tag'>모임 개설</Link>
@@ -89,7 +98,7 @@ const ClubList = ({selectMenu}) => {
                       <div className="custom-card-body">
                         <img className='custom-card-img' alt="HTML" src={club.imageUrl}/>
                         <span className="badge bg-info">{club.status != null ? club.status.description : "없음"}</span>
-                        <span className="badge bg-secondary">운동</span>
+                        <span className="badge bg-secondary">{club.categoryId.name}</span>
                         <h4 className="custom-card-title">{club.name}</h4>
                         <p className="card-text">신청 인원 : {club.currNum}/{club.maxNum} ({club.minNum}명이상 개설)</p>
                         <p className="card-text">모임 예정일 : {club.meetTime.slice(0, 4)}/{club.meetTime.slice(5, 7)}/{club.meetTime.slice(8,10)} {club.meetTime.slice(11, 13)}:{club.meetTime.slice(14, 16)}</p>
