@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react"; 
-import { requestLogin } from "./Auth";
 import '../pages/Modal.css'
 import axios from "axios";
 
