@@ -1,18 +1,21 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { LoginModal } from '../components/LoginModal';
 import ClubList from './ClubList';
 import { SignUpModal } from '../components/SignUpModal';
 import hobbyfiveloggo from './high-five.png'
 
 import './Main.css'
+import axios from 'axios';
 
-const Main = (props) => {
+const Main = () => {
 
   const[menu, setMenu] = useState(0);
   const[loginVisible, setLoginVisible] = useState(false);
   const[SignUpVisible, setSignUpVisible] = useState(false);
   const[loginStatus, setLoginStatus] = useState(false);
   const[signupStatus, setSignupStatus] = useState(false);
+  const[companyName, setCompanyName] = useState('');
+  const[userId, setUserId] = useState(0);
 
   const closeLoginModal = () => {
     setLoginVisible(!loginVisible);
@@ -34,6 +37,24 @@ const Main = (props) => {
     setSignupStatus(signupStatus);
   }
 
+  if (loginStatus) {
+    console.log('loginSuccess');
+    console.log(localStorage.getItem('JWT'));
+    axios( `http://34.236.154.248:8090/api/user`,
+    {
+      headers: { Authorization: `Bearer ${localStorage.getItem('JWT')}` },
+    })
+    .then(res => {
+      setUserId(res.data.userId);
+      setCompanyName(res.data.companyId.name);
+      console.log(res.data);
+    })
+    .catch((error) => {
+      throw new Error(error);
+    });
+    
+  }
+  
     return (
       <div>
         {/* 타이틀 */}
@@ -47,10 +68,10 @@ const Main = (props) => {
         {loginVisible && <LoginModal closeLoginModal={closeLoginModal} getLoginStatus={getLoginStatus} />}
         {SignUpVisible && <SignUpModal closeSignUpModal={closeSignUpModal} getSignUpStatus={getSignUpStatus} />}
         {loginStatus ?
-        <div>
-            <a className='a-tag' onClick={closeLoginModal}>로그아웃</a>
+            <div>
+            <a className='a-tag' >로그아웃</a>
             <a> / </a>
-            <a className='a-tag' onClick={closeSignUpModal}>마이페이지</a> </div>
+            <a className='a-tag' >마이페이지</a> </div>
             : 
             <div>
             <a className='a-tag' onClick={closeLoginModal}>로그인</a>
@@ -65,11 +86,11 @@ const Main = (props) => {
           <div className="menuBar">
             <ul className="tabs">
               <li className={`${menu === 0? 'active': 'inactive'}`} onClick={() => changeMenu(0)}>전체</li>
-              <li className={`${menu === 1? 'active': 'inactive'}`} onClick={() => changeMenu(1)}>신세계아이앤씨</li>
+              <li className={`${menu === 1? 'active': 'inactive'}`} onClick={() => changeMenu(1)}>{companyName}</li>
             </ul>
           </div>
           <div className="contents">
-             <ClubList selectMenu={menu} /> 
+             <ClubList selectMenu={menu} userId={userId} /> 
           </div>
         </div>
 
