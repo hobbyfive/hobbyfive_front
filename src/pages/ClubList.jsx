@@ -35,7 +35,7 @@ const ClubList = ({selectMenu, userId}) => {
         .catch((error) => {
           throw new Error(error);
         });
-    }, [clubList]);
+    }, [selectMenu]);
     
   }
 
@@ -52,7 +52,7 @@ const ClubList = ({selectMenu, userId}) => {
         .catch((error) => {
           throw new Error(error);
         });
-    }, [clubList]);
+    }, [selectMenu]);
     
   }
 
