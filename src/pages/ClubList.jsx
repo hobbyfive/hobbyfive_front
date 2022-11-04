@@ -10,35 +10,52 @@ const ClubList = ({selectMenu}) => {
   const [clubList, setClubList] = useState([]);
   const [filterVisible, setFilterVisible] = useState(false);
   const [clubVisible, setClubVisible] = useState(false);
+  const [switchId, setSwitchId] = useState(0);
 
   const closeFilterModal = () => {
     setFilterVisible(!filterVisible);
   }
 
-  const closeClubModal = (event) => {
+  const closeClubModal = (clubId) => {
     setClubVisible(!clubVisible);
-    console.log(event.target.getAttribute('data-clubId'));
+    setSwitchId(clubId);
   }
 
-  useEffect(() => {
-    axios.get("http://34.236.154.248:8090/api/club/allClub")
-      .then((res) => {
-        setClubList(res.data);
-        console.log(res.data);
-      })
-      .catch((error) => {
-        throw new Error(error);
-      });
-  }, []);
+  
   
   const AllClub = () => {
+    useEffect(() => {
+      axios.get("http://34.236.154.248:8090/api/club/allClub")
+        .then((res) => {
+          console.log(res.data);
+          setClubList(res.data);
+        })
+        .catch((error) => {
+          throw new Error(error);
+        });
+    }, []);
+    
+  }
 
+  const CompanyClub = () => {
+    useEffect(() => {
+      axios.get(`http://34.236.154.248:8090/api/club/selectClubByCompanyId/${8}`)
+        .then((res) => {
+          console.log("회사" + res.data);
+          setClubList(res.data);
+        })
+        .catch((error) => {
+          throw new Error(error);
+        });
+    }, []);
     
   }
   
 
     return (
         <div>
+
+          { selectMenu === 0 ? AllClub() : CompanyClub() }
 
           <div className='createClub'>
             <Link to="/create" className='a-tag'>모임 개설</Link>
@@ -60,27 +77,27 @@ const ClubList = ({selectMenu}) => {
             </div>
             
             <div className='clubs'>
-                {clubVisible && <ClubDetail closeClubModal={closeClubModal} clubId={10}/> }
+                {clubVisible && <ClubDetail closeClubModal={closeClubModal} clubId={switchId}/> }
                
                
                 {
+                  
                   clubList.map((club, index) => (
                     
-                    <div className="card custom-card" key={index} onClick={closeClubModal} data-clubId={index}>
+                    <div className="card custom-card" key={index} onClick={() => closeClubModal(club.clubId)}>
                       
-                      <div className="custom-card-body" data-clubId={index}>
-                        <img className='custom-card-img' alt="HTML" src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2F05jk8%2FbtqFNhPwZ8D%2FKSyAaHOZKrXHsq56K731e1%2Fimg.png"/>
-                        <span className="badge bg-info">모집중</span>
+                      <div className="custom-card-body">
+                        <img className='custom-card-img' alt="HTML" src={club.imageUrl}/>
+                        <span className="badge bg-info">{club.status != null ? club.status.description : "없음"}</span>
                         <span className="badge bg-secondary">운동</span>
-                        <h4 className="custom-card-title">{club.title}</h4>
-                        <p className="card-text">신청 인원 : 2/4</p>
-                        <p className="card-text">모임 예정일 : 10/26</p>
-                        <p className="card-text">모집 마감일 : ~까지</p>
+                        <h4 className="custom-card-title">{club.name}</h4>
+                        <p className="card-text">신청 인원 : {club.currNum}/{club.maxNum} ({club.minNum}명이상 개설)</p>
+                        <p className="card-text">모임 예정일 : {club.meetTime.slice(0, 4)}/{club.meetTime.slice(5, 7)}/{club.meetTime.slice(8,10)} {club.meetTime.slice(11, 13)}:{club.meetTime.slice(14, 16)}</p>
+                        <p className="card-text">모집 마감일 : {club.expiryTime.slice(0, 4)}/{club.expiryTime.slice(5, 7)}/{club.expiryTime.slice(8,10)} {club.expiryTime.slice(11, 13)}:{club.expiryTime.slice(14, 16)}</p>
                       </div>
                     </div>
                   ))
                 }
-                
                 
 
               
@@ -100,7 +117,7 @@ const ClubList = ({selectMenu}) => {
             
           </div>
 
-          { selectMenu === 0 ? "all" : "part" }
+          
         </div>
 
     );
