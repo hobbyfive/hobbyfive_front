@@ -17,7 +17,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import axios from 'axios';
 
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { NoBackpackSharp } from '@mui/icons-material';
 
 const StyledButton = styled(Button)({
@@ -82,13 +82,17 @@ const Create = () => {
   const handleClubContent = event => {
     setClubContent(event.target.value);
   };
+  const navigate = useNavigate();
+  const onNavi = () => {
+    navigate(`/`);
+  };
 
   const createClub = () => {
     // console.log(clubTitle);
     // console.log(clubContent);
     // console.log(gatheringDay);
     // console.log(deadLine);
-    console.log(new Date(deadLine));
+    // console.log(new Date(deadLine));
     // console.log(minNum);
     // console.log(maxNum);
     // console.log(region);
@@ -114,6 +118,7 @@ const Create = () => {
       )
       .then(res => {
         console.log(res.data);
+        onNavi();
       })
       .catch(error => {
         throw new Error(error);
