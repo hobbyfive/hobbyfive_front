@@ -9,7 +9,7 @@ function LoginButton(props) {
     <div className="LoginButton">
       <input type="button" value="로그인" className="blueBtn" onClick={() => setLogin(!login)}/>
       {login && (
-        <LoginModal>
+        <LoginModal  closeModal={() => setLogin(!login)}>
           <Login />
         </LoginModal>
       )}

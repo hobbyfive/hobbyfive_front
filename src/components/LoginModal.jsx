@@ -2,14 +2,14 @@ import React from "react";
  
 function LoginModal(props) {
  
-function closeModal() {
-    props.closeModal();
+function closeLoginModal() {
+    props.closeLoginModal();
   }
  
   return (
-    <div className="Modal" onClick={closeModal}>
+    <div className="Modal" onClick={closeLoginModal}>
       <div className="modalBody" onClick={(e) => e.stopPropagation()}>
-        <button id="modalCloseBtn" onClick={closeModal}>
+        <button id="modalCloseBtn" onClick={closeLoginModal}>
           ✖
         </button>
         {props.children}
