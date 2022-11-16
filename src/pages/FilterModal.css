@@ -1,0 +1,4 @@
+[type=checkbox]:checked::after {
+    content: "✔" !important;
+    font-size: medium !important;
+}
