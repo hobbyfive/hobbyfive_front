@@ -11,9 +11,16 @@ const ClubList = ({selectMenu, userId}) => {
   const [filterVisible, setFilterVisible] = useState(false);
   const [clubVisible, setClubVisible] = useState(false);
   const [switchId, setSwitchId] = useState(0);
+  const [statusData, setStatusData] = useState([]);
+  const [categoryData, setCategoryData] = useState([]);
+  const [locationData, setLocationData] = useState([]);
 
-  const closeFilterModal = () => {
+  const closeFilterModal = (f_status, f_category, f_location) => {
     setFilterVisible(!filterVisible);
+    
+    setStatusData(f_status);
+    setCategoryData(f_category);
+    setLocationData(f_location);
   }
 
   const closeClubModal = (clubId) => {
@@ -21,6 +28,27 @@ const ClubList = ({selectMenu, userId}) => {
     setSwitchId(clubId);
   }
 
+  const print_filter = (arr) => {
+    const result = [];
+
+    if (arr) {
+      if (arr.length === 0) {
+        result.push("전체");
+      } else {
+        for (let i = 0; i < arr.length; i++) {
+          if (i === arr.length - 1) {
+            result.push(arr[i]);
+          } else {
+            result.push(arr[i] + " / ");
+          }
+        }
+      }
+      
+    }
+    
+
+    return result;
+  }
   
   
   const AllClub = (selectMenu) => {
@@ -56,7 +84,7 @@ const ClubList = ({selectMenu, userId}) => {
     
   }
 
-  if (selectMenu == 0) {
+  if (selectMenu === 0) {
     AllClub(selectMenu);
   } else {
     CompanyClub(selectMenu, userId);
@@ -78,11 +106,14 @@ const ClubList = ({selectMenu, userId}) => {
               <div className='filter_title'>Date</div>
               <div className='filter_content'>전체</div>
               <div>------------------</div>
+              <div className='filter_title'>Status</div>
+              <div className='filter_content'>{print_filter(statusData)}</div>
+              <div>------------------</div>
               <div className='filter_title'>Category</div>
-              <div className='filter_content'>전체</div>
+              <div className='filter_content'>{print_filter(categoryData)}</div>
               <div>------------------</div>
               <div className='filter_title'>Location</div>
-              <div className='filter_content'>전체</div>
+              <div className='filter_content'>{print_filter(locationData)}</div>
             </div>
             
             <div className='clubs'>
@@ -97,7 +128,7 @@ const ClubList = ({selectMenu, userId}) => {
                       
                       <div className="custom-card-body">
                         <img className='custom-card-img' alt="HTML" src={club.imageUrl}/>
-                        {club.status.description == "모집중" ? <span className="badge bg-success">{club.status.description}</span>
+                        {club.status.description === "모집중" ? <span className="badge bg-success">{club.status.description}</span>
                         : <span className="badge bg-danger">{club.status.description}</span>}
                         
                         <span className="badge bg-secondary">{club.categoryId.name}</span>
