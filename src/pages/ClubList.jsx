@@ -97,7 +97,9 @@ const ClubList = ({selectMenu, userId}) => {
                       
                       <div className="custom-card-body">
                         <img className='custom-card-img' alt="HTML" src={club.imageUrl}/>
-                        <span className="badge bg-info">{club.status != null ? club.status.description : "없음"}</span>
+                        {club.status.description == "모집중" ? <span className="badge bg-success">{club.status.description}</span>
+                        : <span className="badge bg-danger">{club.status.description}</span>}
+                        
                         <span className="badge bg-secondary">{club.categoryId.name}</span>
                         <h4 className="custom-card-title">{club.name}</h4>
                         <p className="card-text">신청 인원 : {club.currNum}/{club.maxNum} ({club.minNum}명이상 개설)</p>
