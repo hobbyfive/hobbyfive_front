@@ -24,7 +24,7 @@ export default function ClubDetail({ closeClubModal, clubId }) {
   const handleJoin = () => {
     axios
       .post(
-        `http://34.236.154.248:8090/api/clubmember/post/${clubId}`,
+        `http://18.206.77.87:8090/api/clubmember/post/${clubId}`,
         {},
         {
           headers: { Authorization: `Bearer ${localStorage.getItem('JWT')}` },
@@ -44,7 +44,7 @@ export default function ClubDetail({ closeClubModal, clubId }) {
   useEffect(() => {
     axios({
       method: 'get',
-      url: `http://34.236.154.248:8090/api/club/clubInfo/${clubId}`,
+      url: `http://18.206.77.87:8090/api/club/clubInfo/${clubId}`,
     })
       .then(res => {
         setClubName(res.data.name);

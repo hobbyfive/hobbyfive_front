@@ -16,7 +16,7 @@ const LoginModal = ({ closeLoginModal, getLoginStatus }) => {
 
   const Login = () => {
     axios
-      .post('http://34.236.154.248:8090/api/authenticate', {
+      .post('http://18.206.77.87:8090/api/authenticate', {
         email: inputEmail,
         password: inputPasswd,
       })
