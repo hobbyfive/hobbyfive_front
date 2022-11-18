@@ -9,7 +9,7 @@ const SignUpModal = ({closeSignUpModal, getSignUpStatus}) => {
   const [confirmPassword, setConfirmPassword] = useState("")
   const [name, setName] = useState("")
   const [nickname, setNickName] = useState("")
-  const [company, setCompany] = useState("")
+  const [companyName, setCompany] = useState("")
   const [gender, setGender] = useState("M")
 
 
@@ -45,14 +45,16 @@ const SignUpModal = ({closeSignUpModal, getSignUpStatus}) => {
     if(password !== confirmPassword) {
       return alert('비밀번호와 비밀번호확인은 같아야 합니다.')
     } else {
-      console.log(email, password, name, nickname, gender, company);
-      axios.post("http://34.236.154.248:8090/api/signup", {
+      console.log(email, password, name, nickname, gender, companyName);
+      axios.post("http://18.206.77.87:8090/api/signup", {
         email,
         password,
         name,
         nickname,
         gender,
-        company,
+        company : {
+          companyName
+        },
       })
         .then((res) => {
           console.log(res.data);
@@ -61,7 +63,7 @@ const SignUpModal = ({closeSignUpModal, getSignUpStatus}) => {
           return alert('회원가입이 완료되었습니다.')
         })
         .catch((error) => {
-          console.log(error);
+          console.log(error.response.data);
           throw new Error(error);
         });
         
@@ -83,7 +85,7 @@ const SignUpModal = ({closeSignUpModal, getSignUpStatus}) => {
               <div className="form-floating mb-3"><input name="confirmPassword" type="password" placeholder="ConfirmPassword" value={confirmPassword} onChange={onConfirmPasswordHandler} className="form-control"/><label for="floatingInput">비밀번호 확인</label></div>
               <div className="form-floating mb-3"><input name="name" type="text" placeholder="Name" value={name} onChange={onNameHandler} className="form-control"/><label for="floatingInput">이름</label></div>
               <div className="form-floating mb-3"><input name="nickname" type="text" placeholder="NickName" value={nickname} onChange={onNickNameHandler} className="form-control"/><label for="floatingInput">닉네임</label></div>
-              <div className="form-floating mb-3"><input name="company" type="text" placeholder="Company" value={company} onChange={onCompanyHandler} className="form-control"/><label for="floatingInput">회사명</label></div>
+              <div className="form-floating mb-3"><input name="companyName" type="text" placeholder="Company" value={companyName} onChange={onCompanyHandler} className="form-control"/><label for="floatingInput">회사명</label></div>
               <div className="form-check">
                 <input id="gender_man" type="radio" name="gender" className="form-check-input" value="M" onChange={onGenderHandler}/><label className="form-check-label" for="gender_man">
                   저는 남자입니다.</label></div>
