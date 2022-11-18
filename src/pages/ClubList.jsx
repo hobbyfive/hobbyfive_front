@@ -61,7 +61,7 @@ const ClubList = ({selectMenu, userId}) => {
   
   const AllClub = (selectMenu) => {
     useEffect(() => {
-      axios.get("http://34.236.154.248:8090/api/club/allClub")
+      axios.get("http://18.206.77.87:8090/api/club/allClub")
         .then((res) => {
           console.log(res.data);
           setClubList(res.data);
@@ -76,7 +76,7 @@ const ClubList = ({selectMenu, userId}) => {
 
   const CompanyClub = (selectMenu, userId) => {
     useEffect(() => {
-      axios.get(`http://34.236.154.248:8090/api/club/selectClubByCompanyId/${userId}`)
+      axios.get(`http://18.206.77.87:8090/api/club/selectClubByCompanyId/${userId}`)
         .then((res) => {
           setClubList(res.data);
           console.log(res.data);
@@ -133,7 +133,7 @@ const ClubList = ({selectMenu, userId}) => {
                         {club.status.description === "모집중" ? <span className="badge bg-success">{club.status.description}</span>
                         : <span className="badge bg-danger">{club.status.description}</span>}
                         
-                        <span className="badge bg-secondary">{club.categoryId.name}</span>
+                        <span className="badge bg-secondary">{club.categoryId}</span>
                         <h4 className="custom-card-title">{club.title}</h4>
                         <p className="card-text">신청 인원 : {club.currNum}/{club.maxNum} ({club.minNum}명이상 개설)</p>
                         <p className="card-text">모임 예정일 : {club.meetTime.slice(0, 4)}/{club.meetTime.slice(5, 7)}/{club.meetTime.slice(8,10)} {club.meetTime.slice(11, 13)}:{club.meetTime.slice(14, 16)}</p>

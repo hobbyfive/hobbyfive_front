@@ -40,13 +40,13 @@ const Main = () => {
   if (loginStatus) {
     console.log('loginSuccess');
     console.log(localStorage.getItem('JWT'));
-    axios( `http://34.236.154.248:8090/api/user`,
+    axios( `http://18.206.77.87:8090/api/user`,
     {
       headers: { Authorization: `Bearer ${localStorage.getItem('JWT')}` },
     })
     .then(res => {
       setUserId(res.data.userId);
-      setCompanyName(res.data.companyId.name);
+      setCompanyName(res.data.company.companyName);
       console.log(res.data);
     })
     .catch((error) => {
