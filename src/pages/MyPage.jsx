@@ -59,7 +59,8 @@ const Main = () => {
       <div>
         {/* 타이틀 */}
         <div className='center_box'>
-        <img src={hobbyfiveloggo} alt='logo' className='img'/>
+        <a href="/">
+        <img src={hobbyfiveloggo} alt='logo' className='img'/></a>
           <h1>HOBBYFIVE</h1>
         </div>
 
@@ -71,7 +72,7 @@ const Main = () => {
             <div>
             <a className='a-tag' >로그아웃</a>
             <a> / </a>
-            <a className='a-tag' >마이페이지</a> </div>
+            <a className='a-tag' >메인으로</a> </div>
             : 
             <div>
             <a className='a-tag' onClick={closeLoginModal}>로그인</a>

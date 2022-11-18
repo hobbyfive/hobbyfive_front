@@ -18,6 +18,10 @@
     font-size: 1.1rem !important;
 }
 
+a {
+    text-decoration: none;
+  }
+
 .wrap {
     padding-left: 20px;
     padding-right: 20px;
