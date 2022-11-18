@@ -15,12 +15,20 @@ const ClubList = ({selectMenu, userId}) => {
   const [categoryData, setCategoryData] = useState([]);
   const [locationData, setLocationData] = useState([]);
 
-  const closeFilterModal = (f_status, f_category, f_location) => {
+  const closeFilterModal = (f_status, f_category, f_location, flag) => {
     setFilterVisible(!filterVisible);
     
-    setStatusData(f_status);
-    setCategoryData(f_category);
-    setLocationData(f_location);
+    if(flag === 1) {
+      flag = 0;
+      setStatusData(f_status);
+      setCategoryData(f_category);
+      setLocationData(f_location);
+    } else {
+      setStatusData(statusData);
+      setCategoryData(categoryData);
+      setLocationData(locationData);
+    }
+    
   }
 
   const closeClubModal = (clubId) => {
@@ -52,8 +60,6 @@ const ClubList = ({selectMenu, userId}) => {
   
   
   const AllClub = (selectMenu) => {
-    console.log(selectMenu); 
-    console.log("전체선택함");
     useEffect(() => {
       axios.get("http://34.236.154.248:8090/api/club/allClub")
         .then((res) => {
@@ -69,8 +75,6 @@ const ClubList = ({selectMenu, userId}) => {
 
 
   const CompanyClub = (selectMenu, userId) => {
-    console.log("회사선택함");
-    console.log(selectMenu);
     useEffect(() => {
       axios.get(`http://34.236.154.248:8090/api/club/selectClubByCompanyId/${userId}`)
         .then((res) => {
@@ -101,11 +105,9 @@ const ClubList = ({selectMenu, userId}) => {
           <div className='clublistGrid'>
 
             <div className='filter'>
-              {filterVisible && <FilterModal closeFilterModal={closeFilterModal} />}
+              {filterVisible && <FilterModal closeFilterModal={closeFilterModal} 
+              statusData={statusData} categoryData={categoryData} locationData={locationData}/>}
               <div className='breadcrumb btn btn-outline-secondary bg' onClick={closeFilterModal}>FILTER</div>
-              <div className='filter_title'>Date</div>
-              <div className='filter_content'>전체</div>
-              <div>------------------</div>
               <div className='filter_title'>Status</div>
               <div className='filter_content'>{print_filter(statusData)}</div>
               <div>------------------</div>
@@ -132,7 +134,7 @@ const ClubList = ({selectMenu, userId}) => {
                         : <span className="badge bg-danger">{club.status.description}</span>}
                         
                         <span className="badge bg-secondary">{club.categoryId.name}</span>
-                        <h4 className="custom-card-title">{club.name}</h4>
+                        <h4 className="custom-card-title">{club.title}</h4>
                         <p className="card-text">신청 인원 : {club.currNum}/{club.maxNum} ({club.minNum}명이상 개설)</p>
                         <p className="card-text">모임 예정일 : {club.meetTime.slice(0, 4)}/{club.meetTime.slice(5, 7)}/{club.meetTime.slice(8,10)} {club.meetTime.slice(11, 13)}:{club.meetTime.slice(14, 16)}</p>
                         <p className="card-text">모집 마감일 : {club.expiryTime.slice(0, 4)}/{club.expiryTime.slice(5, 7)}/{club.expiryTime.slice(8,10)} {club.expiryTime.slice(11, 13)}:{club.expiryTime.slice(14, 16)}</p>

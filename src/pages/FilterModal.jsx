@@ -44,11 +44,11 @@ const LOCATION_LIST = [
     { id: 24, data: '강동구' }
 ]
 
-const FilterModal = ({closeFilterModal}) => {
+const FilterModal = ({closeFilterModal, statusData, categoryData, locationData}) => {
 
-    const [checkedStList, setCheckedStList] = useState([]);
-    const [checkedCgList, setCheckedCgList] = useState([]);
-    const [checkedLcList, setCheckedLcList] = useState([]);
+    const [checkedStList, setCheckedStList] = useState(statusData);
+    const [checkedCgList, setCheckedCgList] = useState(categoryData);
+    const [checkedLcList, setCheckedLcList] = useState(locationData);
 
     const onCheckedStElement = (checked, item) => {
         if (checked) {
@@ -81,7 +81,7 @@ const FilterModal = ({closeFilterModal}) => {
     };
 
     const Filter = () => {
-        closeFilterModal(checkedStList, checkedCgList, checkedLcList);
+        closeFilterModal(checkedStList, checkedCgList, checkedLcList, 1);
     }
 
     return (
