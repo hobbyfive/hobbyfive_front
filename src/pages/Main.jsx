@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { LoginModal } from '../components/LoginModal';
 import ClubList from './ClubList';
 import { SignUpModal } from '../components/SignUpModal';
-import hobbyfiveloggo from './high-five.png'
-import {Link} from 'react-router-dom';
+import hobbyfiveloggo from './high-five.png';
+import { Link } from 'react-router-dom';
 
 import './Main.css';
 import axios from 'axios';
@@ -71,23 +71,42 @@ const Main = () => {
         <img src={hobbyfiveloggo} alt="logo" className="img" />
         <h1>HOBBYFIVE</h1>
       </div>
-        {/* 로그인, 회원가입 */}
-        <div className='right_box'>
-        {loginVisible && <LoginModal closeLoginModal={closeLoginModal} getLoginStatus={getLoginStatus} />}
-        {SignUpVisible && <SignUpModal closeSignUpModal={closeSignUpModal} getSignUpStatus={getSignUpStatus} />}
-        {loginStatus ?
-            <div>
-            <a className='a-tag' >로그아웃</a>
+      {/* 로그인, 회원가입 */}
+      <div className="right_box">
+        {loginVisible && (
+          <LoginModal
+            closeLoginModal={closeLoginModal}
+            getLoginStatus={getLoginStatus}
+          />
+        )}
+        {SignUpVisible && (
+          <SignUpModal
+            closeSignUpModal={closeSignUpModal}
+            getSignUpStatus={getSignUpStatus}
+          />
+        )}
+        {loginStatus ? (
+          <div>
+            <a className="a-tag" onClick={logout}>
+              로그아웃
+            </a>
             <a> / </a>
-            <Link to="/mypage" className='a-tag'><a className='a-tag' >마이페이지</a></Link> </div>
-            : 
-            <div>
-            <a className='a-tag' onClick={closeLoginModal}>로그인</a>
+            <Link to="/mypage" className="a-tag">
+              <a className="a-tag">마이페이지</a>
+            </Link>{' '}
+          </div>
+        ) : (
+          <div>
+            <a className="a-tag" onClick={closeLoginModal}>
+              로그인
+            </a>
             <a> / </a>
-            <a className='a-tag' onClick={closeSignUpModal}>회원가입</a> </div>}
-          
-          
-        </div>
+            <a className="a-tag" onClick={closeSignUpModal}>
+              회원가입
+            </a>{' '}
+          </div>
+        )}
+      </div>
       {/* 메인 탭 */}
       <div className="wrap">
         <div className="menuBar">
