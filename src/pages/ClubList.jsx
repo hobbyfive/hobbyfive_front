@@ -17,17 +17,38 @@ const ClubList = ({selectMenu, userId}) => {
 
   const closeFilterModal = (f_status, f_category, f_location, flag) => {
     setFilterVisible(!filterVisible);
-    
+    FilterClub(f_category[0].id, f_status[0].id, f_location[0].id);
+
     if(flag === 1) {
       flag = 0;
-      setStatusData(f_status);
-      setCategoryData(f_category);
-      setLocationData(f_location);
+      
+      setStatusData(f_status[0]);
+      setCategoryData(f_category[0]);
+      setLocationData(f_location[0]);
     } else {
-      setStatusData(statusData);
-      setCategoryData(categoryData);
-      setLocationData(locationData);
+      setStatusData(statusData[0]);
+      setCategoryData(categoryData[0]);
+      setLocationData(locationData[0]);
     }
+    
+  }
+
+  const FilterClub = (categoryId, statusId, districtId) => {
+    
+    axios.get("http://18.206.77.87:8090/api/club/allClub", {
+        params: {
+          "categoryId": categoryId,
+          "statusId": statusId,
+          "districtId": districtId
+        }
+      })
+        .then((res) => {
+          console.log(res.data);
+          setClubList(res.data);
+        })
+        .catch((error) => {
+          throw new Error(error);
+        });
     
   }
 
@@ -40,18 +61,9 @@ const ClubList = ({selectMenu, userId}) => {
     const result = [];
 
     if (arr) {
-      if (arr.length === 0) {
-        result.push("전체");
-      } else {
-        for (let i = 0; i < arr.length; i++) {
-          if (i === arr.length - 1) {
-            result.push(arr[i]);
-          } else {
-            result.push(arr[i] + " / ");
-          }
-        }
-      }
-      
+      result.push(arr);
+    } else {
+      result.push("전체");
     }
     
 
@@ -106,16 +118,16 @@ const ClubList = ({selectMenu, userId}) => {
 
             <div className='filter'>
               {filterVisible && <FilterModal closeFilterModal={closeFilterModal} 
-              statusData={statusData} categoryData={categoryData} locationData={locationData}/>}
+              statusData={[statusData.id]} categoryData={[categoryData.id]} locationData={[locationData.id]}/>}
               <div className='breadcrumb btn btn-outline-secondary bg' onClick={closeFilterModal}>FILTER</div>
               <div className='filter_title'>Status</div>
-              <div className='filter_content'>{print_filter(statusData)}</div>
+              <div className='filter_content'>{print_filter(statusData.data)}</div>
               <div>------------------</div>
               <div className='filter_title'>Category</div>
-              <div className='filter_content'>{print_filter(categoryData)}</div>
+              <div className='filter_content'>{print_filter(categoryData.data)}</div>
               <div>------------------</div>
               <div className='filter_title'>Location</div>
-              <div className='filter_content'>{print_filter(locationData)}</div>
+              <div className='filter_content'>{print_filter(locationData.data)}</div>
             </div>
             
             <div className='clubs'>
