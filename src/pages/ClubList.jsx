@@ -119,14 +119,14 @@ const ClubList = ({selectMenu, userId}) => {
             <div className='filter'>
               {filterVisible && <FilterModal closeFilterModal={closeFilterModal} 
               statusData={[statusData.id]} categoryData={[categoryData.id]} locationData={[locationData.id]}/>}
-              <div className='breadcrumb btn btn-outline-secondary bg' onClick={closeFilterModal}>FILTER</div>
-              <div className='filter_title'>Status</div>
+              <div className='breadcrumb btn btn-outline-secondary bg' onClick={closeFilterModal}>필터를 설정해보세요.</div>
+              <div className='filter_title'>[ Status ]</div>
               <div className='filter_content'>{print_filter(statusData.data)}</div>
               <div>------------------</div>
-              <div className='filter_title'>Category</div>
+              <div className='filter_title'>[ Category ]</div>
               <div className='filter_content'>{print_filter(categoryData.data)}</div>
               <div>------------------</div>
-              <div className='filter_title'>Location</div>
+              <div className='filter_title'>[ Location ]</div>
               <div className='filter_content'>{print_filter(locationData.data)}</div>
             </div>
             
