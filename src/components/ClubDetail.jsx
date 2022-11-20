@@ -60,8 +60,8 @@ export default function ClubDetail({ closeClubModal, clubId }) {
         )}일 ${et.slice(11, 13)}시 ${et.slice(14, 16)}분`;
         setMeetTime(lmeetTime);
         setExpiryTime(lexpiryTime);
-        setRegion(res.data.districtId);
-        setCategory(res.data.categoryId);
+        setRegion(res.data.district.districtName);
+        setCategory(res.data.category.categoryName);
         setMaxNum(res.data.maxNum);
         setCurrNum(res.data.currNum);
         setContent(res.data.content);

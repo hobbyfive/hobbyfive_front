@@ -269,14 +269,18 @@ const Create = () => {
                   >
                     지역
                   </label>
-                  <input
-                    value={region}
-                    onChange={handleRegion}
-                    class="form-control form-control-lg"
-                    type="text"
-                    placeholder=""
-                    id="inputLarge"
-                  />
+                  <div class="form-group">
+                    <select multiple="" class="form-select" id="exampleSelect2">
+                      <option>강남</option>
+                      <option>홍대</option>
+                      <option>성수</option>
+                      <option>명동</option>
+                      <option>김포</option>
+                      <option>용산</option>
+                      <option>광화문</option>
+                      <option>을지로</option>
+                    </select>
+                  </div>
                 </div>
                 <div class="form-group customWidth">
                   <label
@@ -285,14 +289,15 @@ const Create = () => {
                   >
                     카테고리
                   </label>
-                  <input
-                    value={category}
-                    onChange={handleCategory}
-                    class="form-control form-control-lg"
-                    type="text"
-                    placeholder=""
-                    id="inputLarge"
-                  />
+                  <div class="form-group">
+                    <select multiple="" class="form-select" id="exampleSelect2">
+                      <option>식사</option>
+                      <option>운동</option>
+                      <option>요리</option>
+                      <option>춤</option>
+                      <option>공부</option>
+                    </select>
+                  </div>
                 </div>
               </div>
             </div>
