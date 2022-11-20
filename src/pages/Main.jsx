@@ -2,12 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { LoginModal } from '../components/LoginModal';
 import ClubList from './ClubList';
 import { SignUpModal } from '../components/SignUpModal';
-<<<<<<< HEAD
 import hobbyfiveloggo from './high-five.png'
 import {Link} from 'react-router-dom';
-=======
-import hobbyfiveloggo from './high-five.png';
->>>>>>> b9d91ee4c688a4bab6e619474139d88a71b41685
 
 import './Main.css';
 import axios from 'axios';
@@ -68,7 +64,13 @@ const Main = () => {
         throw new Error(error);
       });
   }
-
+  return (
+    <div>
+      {/* 타이틀 */}
+      <div className="center_box">
+        <img src={hobbyfiveloggo} alt="logo" className="img" />
+        <h1>HOBBYFIVE</h1>
+      </div>
         {/* 로그인, 회원가입 */}
         <div className='right_box'>
         {loginVisible && <LoginModal closeLoginModal={closeLoginModal} getLoginStatus={getLoginStatus} />}
