@@ -3,6 +3,7 @@ import { LoginModal } from '../components/LoginModal';
 import MyPageClubList from './MyPageClubList';
 import { SignUpModal } from '../components/SignUpModal';
 import hobbyfiveloggo from './high-five.png'
+import {Link} from 'react-router-dom';
 
 import './Main.css'
 import axios from 'axios';
@@ -70,7 +71,7 @@ const Main = () => {
             <div>
             <a className='a-tag' >로그아웃</a>
             <a> / </a>
-            <a className='a-tag' >메인으로</a> </div>
+            <Link to="/" className='a-tag'><a className='a-tag' >메인으로</a></Link> </div>
             : 
             <div>
             <a className='a-tag' onClick={closeLoginModal}>로그인</a>
