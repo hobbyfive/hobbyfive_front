@@ -25,6 +25,27 @@ export default function ClubDetail({ closeClubModal, clubId }) {
   const [status, setStatus] = useState(0);
   // 0:미참가자, 1: 마스터, 2: 기참가자
 
+  const clubClose = () => {
+    axios
+      .post(
+        `http://18.206.77.87:8090/api/club/mail/send/${clubId}`,
+        {},
+        {
+          headers: { Authorization: `Bearer ${localStorage.getItem('JWT')}` },
+        },
+      )
+      .then(res => {
+        console.log(res);
+      })
+      .catch(error => {
+        throw new Error(error);
+      });
+  };
+
+  const already = () => {
+    alert('이미 신청 완료되었습니다.');
+  };
+
   const handleJoin = () => {
     axios
       .post(
@@ -59,16 +80,15 @@ export default function ClubDetail({ closeClubModal, clubId }) {
           for (const elem of res.data) {
             if (elem.userId === currentUser && elem.isMasterUser === 1) {
               setStatus(1);
-              setState('모집완료');
+              setState('마감하기');
               break;
-            }
-            if (elem.userId === currentUser && elem.isMasterUser === 0) {
+            } else if (elem.userId === currentUser) {
               setStatus(2);
               setState('신청완료');
               break;
             }
           }
-          if (currentUser) {
+          if (currentUser && state !== 'Loading...') {
             setState('참가신청');
           }
 
@@ -102,6 +122,9 @@ export default function ClubDetail({ closeClubModal, clubId }) {
               setCurrNum(res.data.currNum);
               setContent(res.data.content);
               setImgUrl(res.data.imageUrl);
+              if (res.data.currNum >= res.data.maxNum) {
+                setState('모집마감');
+              }
             })
             .catch(error => {
               throw new Error(error);
@@ -181,9 +204,21 @@ export default function ClubDetail({ closeClubModal, clubId }) {
               >
                 {state}
               </button>
+            ) : status === 1 ? (
+              <button
+                type="button"
+                className="btn btn-primary"
+                onClick={clubClose}
+              >
+                {state}
+              </button>
             ) : (
-              <button type="button" className="btn btn-primary" onClick={null}>
-                신청완료
+              <button
+                type="button"
+                className="btn btn-primary"
+                onClick={already}
+              >
+                {state}
               </button>
             )}
 
