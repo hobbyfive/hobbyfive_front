@@ -36,6 +36,8 @@ export default function ClubDetail({ closeClubModal, clubId }) {
       )
       .then(res => {
         console.log(res);
+        alert('모집이 마감되었습니다.');
+        setState('마감');
       })
       .catch(error => {
         throw new Error(error);
@@ -88,7 +90,7 @@ export default function ClubDetail({ closeClubModal, clubId }) {
               break;
             }
           }
-          if (currentUser && state !== 'Loading...') {
+          if (currentUser && state === 'Loading...') {
             setState('참가신청');
           }
 
