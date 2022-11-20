@@ -1,0 +1,10 @@
+.custom-modal {
+    display: flex !important;
+    background-color: rgba(0,0,0,0.4) !important;
+}
+
+.no-scroll {
+    position: fixed !important;
+    overflow-y: scroll; 
+    width: 100%;
+}

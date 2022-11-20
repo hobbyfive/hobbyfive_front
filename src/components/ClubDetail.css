@@ -1,0 +1,109 @@
+.fontsizebigger {
+  font-size: 1.2rem !important;
+}
+
+
+.dTitleArea {
+  display: flex;
+  justify-content: space-between;
+}
+
+.dClubTitle {
+  font-size: 2rem !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dGatheringDay {
+  margin: 1vh;
+}
+
+.dDeadLine {
+  margin: 1vh;
+}
+
+.dOptions {
+  display: flex;
+  justify-content: space-between;
+}
+
+.dRegion {
+  font-size: 2vh;
+  margin: 1vh;
+}
+
+.dCategory {
+  font-size: 2vh;
+  margin: 1vh;
+}
+
+.dRegionText {
+  display: inline-block;
+  margin-right: 2.5vh;
+}
+
+.dRegionContent {
+  display: inline-block;
+}
+
+.dCategoryText {
+  display: inline-block;
+  margin-right: 2.5vh;
+}
+
+.dCategoryContent {
+  display: inline-block;
+}
+
+.dParticipants {
+  display: flex;
+  align-items: center;
+  margin-right: 2vh;
+}
+
+.dIcon {
+  margin-right: 2vh;
+}
+
+.dNum {
+  font-size: large;
+}
+
+.dImageBox {
+  display: flex;
+  justify-content: center;
+}
+
+.dImage {
+  border-radius: 15px;
+  width: 40%;
+}
+
+.dTextContent {
+  margin-top: 1vh;
+}
+
+.dButtons {
+  margin-top: 3vh;
+  display: flex;
+  justify-content: space-around;
+}
+
+.dblock {
+  display: block !important;
+}
+
+.timeArea {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 5vh;
+}
+
+.dmaxWidth {
+  max-width: 50% !important;
+}
+
+.dtitle {
+  text-align: center;
+}
