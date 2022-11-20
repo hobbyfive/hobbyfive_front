@@ -48,6 +48,10 @@ export default function ClubDetail({ closeClubModal, clubId }) {
     alert('이미 신청 완료되었습니다.');
   };
 
+  const done = () => {
+    alert('마감된 모집입니다.');
+  };
+
   const handleJoin = () => {
     axios
       .post(
@@ -126,6 +130,7 @@ export default function ClubDetail({ closeClubModal, clubId }) {
               setImgUrl(res.data.imageUrl);
               if (res.data.currNum >= res.data.maxNum) {
                 setState('모집마감');
+                setStatus(3);
               }
             })
             .catch(error => {
@@ -214,12 +219,16 @@ export default function ClubDetail({ closeClubModal, clubId }) {
               >
                 {state}
               </button>
-            ) : (
+            ) : status === 2 ? (
               <button
                 type="button"
                 className="btn btn-primary"
                 onClick={already}
               >
+                {state}
+              </button>
+            ) : (
+              <button type="button" className="btn btn-primary" onClick={done}>
                 {state}
               </button>
             )}
