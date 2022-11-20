@@ -88,42 +88,6 @@ const Main = () => {
           
           
         </div>
-
-      {/* 로그인, 회원가입 */}
-      <div className="right_box">
-        {loginVisible && (
-          <LoginModal
-            closeLoginModal={closeLoginModal}
-            getLoginStatus={getLoginStatus}
-          />
-        )}
-        {SignUpVisible && (
-          <SignUpModal
-            closeSignUpModal={closeSignUpModal}
-            getSignUpStatus={getSignUpStatus}
-          />
-        )}
-        {loginStatus ? (
-          <div>
-            <a className="a-tag" onClick={logout}>
-              로그아웃
-            </a>
-            <a> / </a>
-            <a className="a-tag">마이페이지</a>{' '}
-          </div>
-        ) : (
-          <div>
-            <a className="a-tag" onClick={closeLoginModal}>
-              로그인
-            </a>
-            <a> / </a>
-            <a className="a-tag" onClick={closeSignUpModal}>
-              회원가입
-            </a>{' '}
-          </div>
-        )}
-      </div>
-
       {/* 메인 탭 */}
       <div className="wrap">
         <div className="menuBar">
