@@ -62,7 +62,7 @@ export default function ClubDetail({ closeClubModal, clubId }) {
               setState('모집완료');
               break;
             }
-            if (elem.userId === currentUser) {
+            if (elem.userId === currentUser && elem.isMasterUser === 0) {
               setStatus(2);
               setState('신청완료');
               break;
