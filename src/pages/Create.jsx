@@ -56,12 +56,12 @@ const Create = () => {
   };
   const [fileImage, setFileImage] = useState('');
 
-  const [region, setRegion] = useState('');
+  const [region, setRegion] = useState('강남');
   const handleRegion = event => {
     setRegion(event.target.value);
   };
 
-  const [category, setCategory] = useState('');
+  const [category, setCategory] = useState('식사');
   const handleCategory = event => {
     setCategory(event.target.value);
   };
@@ -88,28 +88,27 @@ const Create = () => {
   };
 
   const createClub = () => {
-    // console.log(clubTitle);
-    // console.log(clubContent);
-    // console.log(gatheringDay);
-    // console.log(deadLine);
-    // console.log(new Date(deadLine));
-    // console.log(minNum);
-    // console.log(maxNum);
-    // console.log(region);
-    // console.log(category);
+    console.log(clubTitle);
+    console.log(clubContent);
+    console.log(gatheringDay);
+    console.log(deadLine);
+    console.log(new Date(deadLine));
+    console.log(minNum);
+    console.log(maxNum);
+    console.log(region);
+    console.log(category);
     axios
       .post(
         'http://18.206.77.87:8090/api/club/create',
         {
           title: clubTitle,
           content: clubContent,
-
           minNum: minNum,
           maxNum: maxNum,
           meetTime: new Date(gatheringDay),
           expiryTime: new Date(deadLine),
-          district: region,
-          category: category,
+          district : region,
+          category : category
         },
         {
           headers: { Authorization: `Bearer ${localStorage.getItem('JWT')}` },
@@ -270,15 +269,15 @@ const Create = () => {
                     지역
                   </label>
                   <div class="form-group">
-                    <select multiple="" class="form-select" id="exampleSelect2">
-                      <option>강남</option>
-                      <option>홍대</option>
-                      <option>성수</option>
-                      <option>명동</option>
-                      <option>김포</option>
-                      <option>용산</option>
-                      <option>광화문</option>
-                      <option>을지로</option>
+                    <select multiple="" class="form-select" id="exampleSelect2" onChange={handleRegion} label="region">
+                      <option value='강남'>강남</option>
+                      <option value='홍대'>홍대</option>
+                      <option value='성수'>성수</option>
+                      <option value='명동'>명동</option>
+                      <option value='김포'>김포</option>
+                      <option value='용산'>용산</option>
+                      <option value='광화문'>광화문</option>
+                      <option value='을지로'>을지로</option>
                     </select>
                   </div>
                 </div>
@@ -290,12 +289,12 @@ const Create = () => {
                     카테고리
                   </label>
                   <div class="form-group">
-                    <select multiple="" class="form-select" id="exampleSelect2">
-                      <option>식사</option>
-                      <option>운동</option>
-                      <option>요리</option>
-                      <option>춤</option>
-                      <option>공부</option>
+                    <select multiple="" class="form-select" id="exampleSelect2" onChange={handleCategory}>
+                      <option value='식사'>식사</option>
+                      <option value='운동'>운동</option>
+                      <option value='요리'>요리</option>
+                      <option value='춤'>춤</option>
+                      <option value='공부'>공부</option>
                     </select>
                   </div>
                 </div>
