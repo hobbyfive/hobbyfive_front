@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { LoginModal } from '../components/LoginModal';
-import ClubList from './ClubList';
+import MyPageClubList from './MyPageClubList';
 import { SignUpModal } from '../components/SignUpModal';
 import hobbyfiveloggo from './high-five.png'
 
@@ -14,7 +14,6 @@ const Main = () => {
   const[SignUpVisible, setSignUpVisible] = useState(false);
   const[loginStatus, setLoginStatus] = useState(false);
   const[signupStatus, setSignupStatus] = useState(false);
-  const[companyName, setCompanyName] = useState('');
   const[userId, setUserId] = useState(0);
 
   const closeLoginModal = () => {
@@ -46,7 +45,6 @@ const Main = () => {
     })
     .then(res => {
       setUserId(res.data.userId);
-      setCompanyName(res.data.companyId.name);
       console.log(res.data);
     })
     .catch((error) => {
@@ -91,7 +89,7 @@ const Main = () => {
             </ul>
           </div>
           <div className="contents">
-             <ClubList selectMenu={menu} userId={userId} /> 
+             <MyPageClubList selectMenu={menu} userId={userId} /> 
           </div>
         </div>
 

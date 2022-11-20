@@ -5,7 +5,7 @@ import './ClubList.css'
 import {Link} from 'react-router-dom';
 import axios from 'axios';
 
-const ClubList = ({selectMenu, userId}) => {
+const MyPageClubList = ({selectMenu, userId}) => {
   const [clubList, setClubList] = useState([]);
   const [filterVisible, setFilterVisible] = useState(false);
   const [clubVisible, setClubVisible] = useState(false);
@@ -50,11 +50,14 @@ const ClubList = ({selectMenu, userId}) => {
   }
   
   
-  const AllClub = (selectMenu) => {
+  const JoinedClub = (selectMenu) => {
     console.log(selectMenu); 
-    console.log("전체선택함");
+    console.log("내가 가입한 클럽 선택");
     useEffect(() => {
-      axios.get("http://18.206.77.87:8090/api/club/allClub")
+      axios.get("http://18.206.77.87:8090/api/club/myPage/JoinedClub",
+      {
+        headers: { Authorization: `Bearer ${localStorage.getItem('JWT')}` }
+      })
         .then((res) => {
           console.log(res.data);
           setClubList(res.data);
@@ -67,11 +70,14 @@ const ClubList = ({selectMenu, userId}) => {
   }
 
 
-  const CompanyClub = (selectMenu, userId) => {
-    console.log("회사선택함");
+  const MyClub = (selectMenu) => {
+    console.log("내가 만든 클럽");
     console.log(selectMenu);
     useEffect(() => {
-      axios.get(`http://18.206.77.87:8090/api/club/selectClubByCompanyId/${userId}`)
+      axios.get(`http://18.206.77.87:8090/api/club/myPage/myClub`,
+      {
+        headers: { Authorization: `Bearer ${localStorage.getItem('JWT')}` }
+      })
         .then((res) => {
           setClubList(res.data);
           console.log(res.data);
@@ -84,9 +90,9 @@ const ClubList = ({selectMenu, userId}) => {
   }
 
   if (selectMenu === 0) {
-    AllClub(selectMenu);
+    JoinedClub(selectMenu);
   } else {
-    CompanyClub(selectMenu, userId);
+    MyClub(selectMenu);
   }
   
 
@@ -98,23 +104,6 @@ const ClubList = ({selectMenu, userId}) => {
           </div>
 
           <div className='clublistGrid'>
-
-            <div className='filter'>
-              {filterVisible && <FilterModal closeFilterModal={closeFilterModal} />}
-              <div className='breadcrumb btn btn-outline-secondary bg' onClick={closeFilterModal}>FILTER</div>
-              <div className='filter_title'>Date</div>
-              <div className='filter_content'>전체</div>
-              <div>------------------</div>
-              <div className='filter_title'>Status</div>
-              <div className='filter_content'>{print_filter(statusData)}</div>
-              <div>------------------</div>
-              <div className='filter_title'>Category</div>
-              <div className='filter_content'>{print_filter(categoryData)}</div>
-              <div>------------------</div>
-              <div className='filter_title'>Location</div>
-              <div className='filter_content'>{print_filter(locationData)}</div>
-            </div>
-            
             <div className='clubs'>
                 {clubVisible && <ClubDetail closeClubModal={closeClubModal} clubId={switchId}/> }
                
@@ -164,4 +153,4 @@ const ClubList = ({selectMenu, userId}) => {
     );
 };
 
-export default ClubList;
+export default MyPageClubList;

@@ -99,9 +99,9 @@ const Create = () => {
     // console.log(category);
     axios
       .post(
-        'http://18.206.77.87:8090/api/club/signup',
+        'http://18.206.77.87:8090/api/club/create',
         {
-          name: clubTitle,
+          title: clubTitle,
           content: clubContent,
 
           minNum: minNum,

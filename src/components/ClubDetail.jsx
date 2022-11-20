@@ -47,7 +47,7 @@ export default function ClubDetail({ closeClubModal, clubId }) {
       url: `http://18.206.77.87:8090/api/club/clubInfo/${clubId}`,
     })
       .then(res => {
-        setClubName(res.data.name);
+        setClubName(res.data.title);
         let mt = res.data.meetTime;
         let lmeetTime = `${mt.slice(0, 4)}년 ${mt.slice(5, 7)}월 ${mt.slice(
           8,
@@ -60,8 +60,8 @@ export default function ClubDetail({ closeClubModal, clubId }) {
         )}일 ${et.slice(11, 13)}시 ${et.slice(14, 16)}분`;
         setMeetTime(lmeetTime);
         setExpiryTime(lexpiryTime);
-        setRegion(res.data.districtId.name);
-        setCategory(res.data.categoryId.name);
+        setRegion(res.data.districtId);
+        setCategory(res.data.categoryId);
         setMaxNum(res.data.maxNum);
         setCurrNum(res.data.currNum);
         setContent(res.data.content);
