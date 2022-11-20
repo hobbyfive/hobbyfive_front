@@ -49,7 +49,7 @@ export default function ClubDetail({ closeClubModal, clubId }) {
   };
 
   const done = () => {
-    alert('마감된 모집입니다.');
+    alert('마감된 모임입니다.');
   };
 
   const handleJoin = () => {
@@ -94,9 +94,6 @@ export default function ClubDetail({ closeClubModal, clubId }) {
               break;
             }
           }
-          if (currentUser && state === 'Loading...') {
-            setState('참가신청');
-          }
 
           axios({
             method: 'get',
@@ -131,6 +128,9 @@ export default function ClubDetail({ closeClubModal, clubId }) {
               if (res.data.currNum >= res.data.maxNum) {
                 setState('모집마감');
                 setStatus(3);
+              }
+              if (currentUser && state === 'Loading...') {
+                setState('참가신청');
               }
             })
             .catch(error => {
