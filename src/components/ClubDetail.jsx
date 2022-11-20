@@ -19,7 +19,11 @@ export default function ClubDetail({ closeClubModal, clubId }) {
   const [category, setCategory] = useState('');
   const [imgUrl, setImgUrl] = useState('');
 
-  const [state, setState] = useState('참가신청');
+  const [state, setState] = useState('Loading...');
+
+  const [currentUser, setCurrentUser] = useState('');
+  const [status, setStatus] = useState(0);
+  // 0:미참가자, 1: 마스터, 2: 기참가자
 
   const handleJoin = () => {
     axios
@@ -31,7 +35,6 @@ export default function ClubDetail({ closeClubModal, clubId }) {
         },
       )
       .then(res => {
-        console.log(res.data);
         alert('참가신청 완료되었습니다.');
         setCurrNum(currNum + 1);
         setState('신청완료');
@@ -42,33 +45,68 @@ export default function ClubDetail({ closeClubModal, clubId }) {
   };
 
   useEffect(() => {
-    axios({
-      method: 'get',
-      url: `http://18.206.77.87:8090/api/club/clubInfo/${clubId}`,
-    })
-      .then(res => {
-        setClubName(res.data.title);
-        let mt = res.data.meetTime;
-        let lmeetTime = `${mt.slice(0, 4)}년 ${mt.slice(5, 7)}월 ${mt.slice(
-          8,
-          10,
-        )}일 ${mt.slice(11, 13)}시 ${mt.slice(14, 16)}분`;
-        let et = res.data.expiryTime;
-        let lexpiryTime = `${et.slice(0, 4)}년 ${et.slice(5, 7)}월 ${et.slice(
-          8,
-          10,
-        )}일 ${et.slice(11, 13)}시 ${et.slice(14, 16)}분`;
-        setMeetTime(lmeetTime);
-        setExpiryTime(lexpiryTime);
-        setRegion(res.data.districtId);
-        setCategory(res.data.categoryId);
-        setMaxNum(res.data.maxNum);
-        setCurrNum(res.data.currNum);
-        setContent(res.data.content);
-        setImgUrl(res.data.imageUrl);
+    axios
+      .get(`http://18.206.77.87:8090/api/user`, {
+        headers: { Authorization: `Bearer ${localStorage.getItem('JWT')}` },
       })
-      .catch(error => {
-        throw new Error(error);
+      .then(res => {
+        setCurrentUser(res.data.userId);
+
+        axios({
+          method: 'get',
+          url: `http://18.206.77.87:8090/api/clubmember/list/${clubId}`,
+        }).then(res => {
+          for (const elem of res.data) {
+            if (elem.userId === currentUser && elem.isMasterUser === 1) {
+              setStatus(1);
+              setState('모집완료');
+              break;
+            }
+            if (elem.userId === currentUser) {
+              setStatus(2);
+              setState('신청완료');
+              break;
+            }
+          }
+          if (currentUser) {
+            setState('참가신청');
+          }
+
+          axios({
+            method: 'get',
+            url: `http://18.206.77.87:8090/api/club/clubInfo/${clubId}`,
+          })
+            .then(res => {
+              setClubName(res.data.title);
+              let mt = res.data.meetTime;
+              let lmeetTime = `${mt.slice(0, 4)}년 ${mt.slice(
+                5,
+                7,
+              )}월 ${mt.slice(8, 10)}일 ${mt.slice(11, 13)}시 ${mt.slice(
+                14,
+                16,
+              )}분`;
+              let et = res.data.expiryTime;
+              let lexpiryTime = `${et.slice(0, 4)}년 ${et.slice(
+                5,
+                7,
+              )}월 ${et.slice(8, 10)}일 ${et.slice(11, 13)}시 ${et.slice(
+                14,
+                16,
+              )}분`;
+              setMeetTime(lmeetTime);
+              setExpiryTime(lexpiryTime);
+              setRegion(res.data.district.districtName);
+              setCategory(res.data.category.categoryName);
+              setMaxNum(res.data.maxNum);
+              setCurrNum(res.data.currNum);
+              setContent(res.data.content);
+              setImgUrl(res.data.imageUrl);
+            })
+            .catch(error => {
+              throw new Error(error);
+            });
+        });
       });
   }, [currNum]);
 
@@ -135,13 +173,20 @@ export default function ClubDetail({ closeClubModal, clubId }) {
           </div>
 
           <div className="modal-footer">
-            <button
-              type="button"
-              className="btn btn-primary"
-              onClick={handleJoin}
-            >
-              {state}
-            </button>
+            {status === 0 ? (
+              <button
+                type="button"
+                className="btn btn-primary"
+                onClick={handleJoin}
+              >
+                {state}
+              </button>
+            ) : (
+              <button type="button" className="btn btn-primary" onClick={null}>
+                신청완료
+              </button>
+            )}
+
             <button
               type="button"
               className="btn btn-secondary"
