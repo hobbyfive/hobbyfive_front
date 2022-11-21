@@ -19,13 +19,13 @@ const CATEGORY_LIST = [
 
 const LOCATION_LIST = [
     { id: 1, data: '강남' },
-    { id: 2, data: '홍대' },
-    { id: 3, data: '성수' },
-    { id: 4, data: '명동' },
-    { id: 5, data: '김포' },
-    { id: 6, data: '용산' },
-    { id: 7, data: '광화문' },
-    { id: 8, data: '을지로' }
+    { id: 3, data: '홍대' },
+    { id: 4, data: '성수' },
+    { id: 5, data: '명동' },
+    { id: 6, data: '김포' },
+    { id: 7, data: '용산' },
+    { id: 8, data: '광화문' },
+    { id: 9, data: '을지로' }
 ]
 
 const FilterModal = ({closeFilterModal, statusData, categoryData, locationData}) => {
@@ -65,7 +65,7 @@ const FilterModal = ({closeFilterModal, statusData, categoryData, locationData})
     };
 
     const Filter = () => {
-        closeFilterModal([STATUS_LIST[checkedStList-1]], [CATEGORY_LIST[checkedCgList-1]], [LOCATION_LIST[checkedLcList-1]], 1);
+        closeFilterModal([STATUS_LIST[checkedStList-1]], [CATEGORY_LIST[checkedCgList-1]], [LOCATION_LIST[checkedLcList-2]], 1);
     }
 
     
