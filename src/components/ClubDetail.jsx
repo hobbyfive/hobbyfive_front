@@ -22,8 +22,10 @@ export default function ClubDetail({ closeClubModal, clubId }) {
   const [state, setState] = useState('Loading...');
 
   const [currentUser, setCurrentUser] = useState('');
-  const [status, setStatus] = useState(0);
-  // 0:미참가자, 1: 마스터, 2: 기참가자
+  const [status, setStatus] = useState(-1);
+  // 0:미참가자, 1: 마스터, 2: 기참가자, 9: 미로그인
+
+  const [elements, setElements] = useState([]);
 
   const clubClose = () => {
     axios
@@ -72,72 +74,111 @@ export default function ClubDetail({ closeClubModal, clubId }) {
   };
 
   useEffect(() => {
-    axios
-      .get(`http://18.206.77.87:8090/api/user`, {
-        headers: { Authorization: `Bearer ${localStorage.getItem('JWT')}` },
-      })
-      .then(res => {
-        setCurrentUser(res.data.userId);
-
-        axios({
-          method: 'get',
-          url: `http://18.206.77.87:8090/api/clubmember/list/${clubId}`,
-        }).then(res => {
-          for (const elem of res.data) {
-            if (elem.userId === currentUser && elem.isMasterUser === 1) {
-              setStatus(1);
-              setState('마감하기');
-              break;
-            } else if (elem.userId === currentUser) {
-              setStatus(2);
-              setState('신청완료');
-              break;
-            }
-          }
+    if (localStorage.getItem('JWT') !== null) {
+      axios
+        .get(`http://18.206.77.87:8090/api/user`, {
+          headers: { Authorization: `Bearer ${localStorage.getItem('JWT')}` },
+        })
+        .then(res => {
+          setCurrentUser(res.data.userId);
 
           axios({
             method: 'get',
-            url: `http://18.206.77.87:8090/api/club/clubInfo/${clubId}`,
-          })
-            .then(res => {
-              setClubName(res.data.title);
-              let mt = res.data.meetTime;
-              let lmeetTime = `${mt.slice(0, 4)}년 ${mt.slice(
-                5,
-                7,
-              )}월 ${mt.slice(8, 10)}일 ${mt.slice(11, 13)}시 ${mt.slice(
-                14,
-                16,
-              )}분`;
-              let et = res.data.expiryTime;
-              let lexpiryTime = `${et.slice(0, 4)}년 ${et.slice(
-                5,
-                7,
-              )}월 ${et.slice(8, 10)}일 ${et.slice(11, 13)}시 ${et.slice(
-                14,
-                16,
-              )}분`;
-              setMeetTime(lmeetTime);
-              setExpiryTime(lexpiryTime);
-              setRegion(res.data.district.districtName);
-              setCategory(res.data.category.categoryName);
-              setMaxNum(res.data.maxNum);
-              setCurrNum(res.data.currNum);
-              setContent(res.data.content);
-              setImgUrl(res.data.imageUrl);
-              if (res.data.currNum >= res.data.maxNum) {
-                setState('모집마감');
-                setStatus(3);
-              }
-              if (currentUser && state === 'Loading...') {
-                setState('참가신청');
-              }
+            url: `http://18.206.77.87:8090/api/clubmember/list/${clubId}`,
+          }).then(res => {
+            setElements(res.data);
+
+            axios({
+              method: 'get',
+              url: `http://18.206.77.87:8090/api/club/clubInfo/${clubId}`,
             })
-            .catch(error => {
-              throw new Error(error);
-            });
+              .then(res => {
+                setClubName(res.data.title);
+                let mt = res.data.meetTime;
+                let lmeetTime = `${mt.slice(0, 4)}년 ${mt.slice(
+                  5,
+                  7,
+                )}월 ${mt.slice(8, 10)}일 ${mt.slice(11, 13)}시 ${mt.slice(
+                  14,
+                  16,
+                )}분`;
+                let et = res.data.expiryTime;
+                let lexpiryTime = `${et.slice(0, 4)}년 ${et.slice(
+                  5,
+                  7,
+                )}월 ${et.slice(8, 10)}일 ${et.slice(11, 13)}시 ${et.slice(
+                  14,
+                  16,
+                )}분`;
+                setMeetTime(lmeetTime);
+                setExpiryTime(lexpiryTime);
+                setRegion(res.data.district.districtName);
+                setCategory(res.data.category.categoryName);
+                setMaxNum(res.data.maxNum);
+                setCurrNum(res.data.currNum);
+                setContent(res.data.content);
+                setImgUrl(res.data.imageUrl);
+                for (const elem of elements) {
+                  if (elem.userId === currentUser && elem.isMasterUser === 1) {
+                    setStatus(1);
+                    setState('마감하기');
+                    break;
+                  } else if (elem.userId === currentUser) {
+                    setStatus(2);
+                    setState('신청완료');
+                    break;
+                  }
+                }
+                if (
+                  res.data.currNum >= res.data.maxNum &&
+                  status !== 1 &&
+                  status !== 2
+                ) {
+                  setState('모집마감');
+                  setStatus(3);
+                }
+                if (status === -1) {
+                  setStatus(0);
+                  setState('참가신청');
+                }
+              })
+              .catch(error => {
+                throw new Error(error);
+              });
+          });
         });
-      });
+    } else {
+      axios({
+        method: 'get',
+        url: `http://18.206.77.87:8090/api/club/clubInfo/${clubId}`,
+      })
+        .then(res => {
+          setClubName(res.data.title);
+          let mt = res.data.meetTime;
+          let lmeetTime = `${mt.slice(0, 4)}년 ${mt.slice(5, 7)}월 ${mt.slice(
+            8,
+            10,
+          )}일 ${mt.slice(11, 13)}시 ${mt.slice(14, 16)}분`;
+          let et = res.data.expiryTime;
+          let lexpiryTime = `${et.slice(0, 4)}년 ${et.slice(5, 7)}월 ${et.slice(
+            8,
+            10,
+          )}일 ${et.slice(11, 13)}시 ${et.slice(14, 16)}분`;
+          setMeetTime(lmeetTime);
+          setExpiryTime(lexpiryTime);
+          setRegion(res.data.district.districtName);
+          setCategory(res.data.category.categoryName);
+          setMaxNum(res.data.maxNum);
+          setCurrNum(res.data.currNum);
+          setContent(res.data.content);
+          setImgUrl(res.data.imageUrl);
+
+          setStatus(9);
+        })
+        .catch(error => {
+          throw new Error(error);
+        });
+    }
   }, [currNum]);
 
   return (
@@ -209,7 +250,7 @@ export default function ClubDetail({ closeClubModal, clubId }) {
                 className="btn btn-primary"
                 onClick={handleJoin}
               >
-                {state}
+                {'참가신청'}
               </button>
             ) : status === 1 ? (
               <button
@@ -217,7 +258,7 @@ export default function ClubDetail({ closeClubModal, clubId }) {
                 className="btn btn-primary"
                 onClick={clubClose}
               >
-                {state}
+                {'마감하기'}
               </button>
             ) : status === 2 ? (
               <button
@@ -225,13 +266,13 @@ export default function ClubDetail({ closeClubModal, clubId }) {
                 className="btn btn-primary"
                 onClick={already}
               >
-                {state}
+                {'신청완료'}
               </button>
-            ) : (
+            ) : status === 3 ? (
               <button type="button" className="btn btn-primary" onClick={done}>
-                {state}
+                {'모집마감'}
               </button>
-            )}
+            ) : null}
 
             <button
               type="button"
